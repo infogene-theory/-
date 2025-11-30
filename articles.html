@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文章列表（MD + INI）</title>
+  <link rel="stylesheet" href="blog-styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.getElementById('doc-content'));"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:false});</script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .header-title { font-size: 1.4rem; margin: 0; }
+    .filters { display:flex; gap:10px; align-items:center; margin-bottom: 20px; }
+    .filters input, .filters select { padding:8px 10px; border:1px solid #ddd; border-radius:6px; }
+    .post-card .meta { color:#777; font-size:0.9rem; margin-bottom:8px; }
+    .post-card .actions { display:flex; gap:10px; flex-wrap:wrap; }
+    .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display:none; align-items:center; justify-content:center; z-index: 10000; }
+    .modal-inner { background: #fff; width: min(1000px, 90%); max-height: 85vh; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); display:flex; flex-direction:column; }
+    .modal-header { display:flex; justify-content: space-between; align-items:center; padding: 12px 16px; border-bottom:1px solid #eee; }
+    .modal-header .title { font-weight:600; }
+    .modal-body { padding: 16px; overflow:auto; }
+    .close-btn { background:#333; color:#fff; border:none; border-radius:6px; padding:8px 12px; cursor:pointer; }
+    .empty { text-align:center; color:#777; padding:20px; }
+  </style>
+  <script>
+    const files = [
+      {title:'README', path:'README.md', type:'md', group:'根目录'},
+      {title:'Damon 的个人 RVSE 研讨', path:'Damon 的个人 RVSE 研讨.md', type:'md', group:'根目录'},
+      {title:'IGT初中高中化学重构教程', path:'IGT初中高中化学重构教程.md', type:'md', group:'根目录'},
+      {title:'IGT初中高中数学重构教程', path:'IGT初中高中数学重构教程.md', type:'md', group:'根目录'},
+      {title:'IGT初中高中物理重构教程', path:'IGT初中高中物理重构教程.md', type:'md', group:'根目录'},
+      {title:'IGT初中高中生物学重构教程', path:'IGT初中高中生物学重构教程.md', type:'md', group:'根目录'},
+      {title:'IGT数学教学实施指南', path:'IGT数学教学实施指南.md', type:'md', group:'根目录'},
+      {title:'IGT数学概念频率秩序度计算手册', path:'IGT数学概念频率秩序度计算手册.md', type:'md', group:'根目录'},
+      {title:'IGT物理学重构：频率相干解释所有基本物理现象', path:'IGT物理学重构：频率相干解释所有基本物理现象.md', type:'md', group:'根目录'},
+      {title:'info_gene_theory_clean', path:'info_gene_theory_clean.md', type:'md', group:'根目录'},
+      {title:'信息基因论 v3.1', path:'信息基因论 v3.1.md', type:'md', group:'根目录'},
+      {title:'信息基因论 v5', path:'信息基因论 v5.md', type:'md', group:'根目录'},
+      {title:'信息基因论 v7.0：频率相干与涌现演化的大统一框架', path:'信息基因论 v7.0：频率相干与涌现演化的大统一框架.md', type:'md', group:'根目录'},
+      {title:'AI-RVS自演化体系白皮书', path:'AI-RVS自演化体系白皮书.ini', type:'ini', group:'根目录'},
+      {title:'AI共识知识库白皮书（IGT v5', path:'AI共识知识库白皮书（IGT v5.ini', type:'ini', group:'根目录'},
+      {title:'“学术 × 解读型智能体”', path:'“学术 × 解读型智能体”.ini', type:'ini', group:'根目录'},
+      {title:'《RVS：从生物演化到信息演化的尺度跃迁》', path:'《RVS：从生物演化到信息演化的尺度跃迁》.ini', type:'ini', group:'根目录'},
+      {title:'信息基因论·主频永续篇', path:'信息基因论·主频永续篇.ini', type:'ini', group:'根目录'},
+      {title:'信息基因论·宇宙繁衍篇：从奇点到多宇宙的RVS自演化模型', path:'信息基因论·宇宙繁衍篇：从奇点到多宇宙的RVS自演化模型.ini', type:'ini', group:'根目录'},
+      {title:'信息基因论·意义坍缩篇', path:'信息基因论·意义坍缩篇.ini', type:'ini', group:'根目录'},
+      {title:'历史，是主频存在的投影', path:'历史，是主频存在的投影.ini', type:'ini', group:'根目录'},
+      {title:'AI与IGT：认知壁垒的双重终结机制', path:'# AI与IGT：认知壁垒的双重终结机制.ini', type:'ini', group:'根目录'},
+      {title:'人类共识知识库与AI自演化的秩序锁定机制', path:'# 人类共识知识库与AI自演化的秩序锁定机制.ini', type:'ini', group:'根目录'},
+      {title:'量子不确定性的IGT解构：物理定律还是神学残留？', path:'# 量子不确定性的IGT解构：物理定律还是神学残留？.ini', type:'ini', group:'根目录'},
+      {title:'信息基因论 v7.0：频率相干与涌现演化的大统一框架（子目录）', path:'信息基因论7.0版本/信息基因论 v7.0：频率相干与涌现演化的大统一框架.md', type:'md', group:'信息基因论7.0版本'},
+      {title:'新信息元宇宙平台白皮书', path:'基于信息基因论的新信息元宇宙demo/新信息元宇宙平台白皮书.md', type:'md', group:'新信息元宇宙demo'},
+      {title:'新信息元宇宙demo README', path:'基于信息基因论的新信息元宇宙demo/README.md', type:'md', group:'新信息元宇宙demo'},
+      {title:'游戏式AI成长伙伴项目计划', path:'游戏式AI成长伙伴APP/project_plan.md', type:'md', group:'游戏式AI成长伙伴APP'},
+      {title:'IGT个性化调频标语库', path:'空间调频/IGT个性化调频标语库.md', type:'md', group:'空间调频'},
+      {title:'IGT声波共振模块使用说明书', path:'空间调频/IGT声波共振模块使用说明书.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频三维效果图与施工图纸规范', path:'空间调频/IGT空间调频三维效果图与施工图纸规范.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频平面设计稿规范', path:'空间调频/IGT空间调频平面设计稿规范.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频标语墙纸使用说明书', path:'空间调频/IGT空间调频标语墙纸使用说明书.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频物料清单手册', path:'空间调频/IGT空间调频物料清单手册.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频设计文件包管理规范', path:'空间调频/IGT空间调频设计文件包管理规范.md', type:'md', group:'空间调频'},
+      {title:'IGT空间调频项目物料准备完成总结报告', path:'空间调频/IGT空间调频项目物料准备完成总结报告.md', type:'md', group:'空间调频'},
+      {title:'个性化调频优化理论框架', path:'空间调频/个性化调频优化理论框架.md', type:'md', group:'空间调频'},
+      {title:'空间调频物料分类管理体系', path:'空间调频/空间调频物料分类管理体系.md', type:'md', group:'空间调频'},
+      {title:'空间调频物料清单', path:'空间调频/空间调频物料清单.md', type:'md', group:'空间调频'},
+      {title:'空间调频规格质量管控标准', path:'空间调频/空间调频规格质量管控标准.md', type:'md', group:'空间调频'}
+    ];
+
+    let filtered = files.slice();
+
+    function renderList() {
+      const listEl = document.getElementById('list');
+      listEl.innerHTML = '';
+      if (!filtered.length) {
+        listEl.innerHTML = '<div class="empty">没有匹配的文档</div>';
+        return;
+      }
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'post-card';
+        card.innerHTML = `
+          <h4>${escapeHtml(item.title)}</h4>
+          <div class="meta">类型：${item.type.toUpperCase()} · 位置：${escapeHtml(item.group)}</div>
+          <div class="actions">
+            <a href="${encodeURI(item.path)}" class="view-project" target="_blank">打开原文件</a>
+            <button class="read-more" onclick='openDoc(${JSON.stringify(item)})'>在页面查看</button>
+          </div>
+        `;
+        listEl.appendChild(card);
+      });
+    }
+
+    function openDoc(item) {
+      const url = encodeURI(item.path);
+      fetch(url).then(r => {
+        if (!r.ok) throw new Error('无法加载文档: ' + r.status);
+        return r.text();
+      }).then(text => {
+        const contentEl = document.getElementById('doc-content');
+        if (item.type === 'md') {
+          contentEl.innerHTML = marked.parse(text);
+          try { renderMathInElement(contentEl); } catch(e) {}
+          try { mermaid.run({querySelector: '.modal-body'}); } catch(e) {}
+        } else {
+          contentEl.textContent = text;
+        }
+        document.getElementById('doc-title').textContent = item.title;
+        document.getElementById('doc-modal').style.display = 'flex';
+      }).catch(err => {
+        const contentEl = document.getElementById('doc-content');
+        contentEl.innerHTML = `<div class="empty">${escapeHtml(err.message)}</div>`;
+        document.getElementById('doc-title').textContent = item.title;
+        document.getElementById('doc-modal').style.display = 'flex';
+      });
+    }
+
+    function closeModal() {
+      document.getElementById('doc-modal').style.display = 'none';
+      document.getElementById('doc-content').innerHTML = '';
+    }
+
+    function applyFilters() {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const t = document.getElementById('type').value;
+      const g = document.getElementById('group').value;
+      filtered = files.filter(f => {
+        const matchQ = !q || f.title.toLowerCase().includes(q) || f.path.toLowerCase().includes(q);
+        const matchT = !t || f.type === t;
+        const matchG = !g || f.group === g;
+        return matchQ && matchT && matchG;
+      });
+      renderList();
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[s]));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const groups = Array.from(new Set(files.map(f => f.group)));
+      const groupSel = document.getElementById('group');
+      groups.forEach(g => {
+        const opt = document.createElement('option');
+        opt.value = g; opt.textContent = g; groupSel.appendChild(opt);
+      });
+      renderList();
+      document.getElementById('search').addEventListener('input', applyFilters);
+      document.getElementById('type').addEventListener('change', applyFilters);
+      document.getElementById('group').addEventListener('change', applyFilters);
+    });
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1 class="header-title">文档列表</h1>
+      <nav>
+        <a href="/">首页</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h3>文章列表（Markdown 与 INI）</h3>
+      <div class="filters">
+        <input id="search" type="text" placeholder="搜索标题或路径...">
+        <select id="type">
+          <option value="">全部类型</option>
+          <option value="md">MD</option>
+          <option value="ini">INI</option>
+        </select>
+        <select id="group">
+          <option value="">全部位置</option>
+        </select>
+      </div>
+      <div id="list" class="post-list"></div>
+    </section>
+
+    <div id="doc-modal" class="modal" role="dialog" aria-modal="true">
+      <div class="modal-inner">
+        <div class="modal-header">
+          <div id="doc-title" class="title"></div>
+          <button class="close-btn" onclick="closeModal()">关闭</button>
+        </div>
+        <div class="modal-body">
+          <div id="doc-content" class="theory-section"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 文档列表</p>
+    </div>
+  </footer>
+</body>
+</html>
