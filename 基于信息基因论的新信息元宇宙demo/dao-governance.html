@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAO治理系统 - 新信息元宇宙</title>
+    <title>DAO治理系统 · 频率共识驱动的去中心化自治</title>
     <style>
         * {
             margin: 0;
@@ -12,11 +12,11 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a0033, #330066, #4d0080, #000033);
             color: #ffffff;
-            min-height: 100vh;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
@@ -27,127 +27,213 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            padding: 40px 0;
             position: relative;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4);
+        .title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            animation: gradient 6s ease infinite;
+            margin-bottom: 20px;
         }
 
-        .header p {
-            color: #a0a0a0;
-            font-size: 1.1rem;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        .main-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        .subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
             margin-bottom: 30px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
+        .theory-banner {
+            background: rgba(255, 0, 128, 0.1);
+            border: 2px solid #ff0080;
             border-radius: 15px;
             padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #ff0080;
             backdrop-filter: blur(10px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .governance-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .voting-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(128, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            color: #ff0080;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* 治理机制可视化 */
+        .governance-visualization {
+            height: 250px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 2px solid rgba(255, 0, 128, 0.3);
+        }
+
+        .consensus-network {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .network-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: radial-gradient(circle, #ff0080, #8000ff);
+            border-radius: 50%;
+            animation: pulse-node 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-node {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .consensus-link {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff80, transparent);
+            animation: consensus-flow 3s linear infinite;
+        }
+
+        @keyframes consensus-flow {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+
+        /* 四元治理指标 */
+        .governance-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .governance-metric {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        .card:hover {
+        .governance-metric:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(255, 0, 128, 0.5);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.2);
         }
 
-        .card h3 {
-            color: #00d4ff;
-            margin-bottom: 20px;
+        .metric-name {
+            color: #ff0080;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff80;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .metric-desc {
+            color: #cccccc;
+            font-size: 0.8rem;
+        }
+
+        /* 提案系统 */
+        .proposal-system {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .proposal-title {
+            color: #8000ff;
             font-size: 1.3rem;
-        }
-
-        .proposal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .form-group label {
-            color: #a0a0a0;
-            font-size: 0.9rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 12px;
-            color: #ffffff;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #00d4ff;
-            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #00d4ff, #0099cc);
-            border: none;
-            border-radius: 8px;
-            padding: 12px 24px;
-            color: white;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .proposal-list {
-            max-height: 400px;
+            max-height: 200px;
             overflow-y: auto;
+            margin: 20px 0;
         }
 
         .proposal-item {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
             padding: 15px;
-            margin-bottom: 15px;
-            border-left: 4px solid #00d4ff;
+            margin: 10px 0;
+            border-left: 4px solid #ff0080;
             transition: all 0.3s ease;
         }
 
         .proposal-item:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
         }
 
         .proposal-header {
@@ -157,690 +243,902 @@
             margin-bottom: 10px;
         }
 
-        .proposal-title {
+        .proposal-name {
+            color: #ffffff;
             font-weight: bold;
-            color: #00d4ff;
+            font-size: 0.9rem;
         }
 
         .proposal-status {
             padding: 4px 8px;
             border-radius: 12px;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
         }
 
-        .status-active {
-            background: rgba(0, 212, 255, 0.2);
-            color: #00d4ff;
-        }
+        .status-active { background: rgba(0, 255, 128, 0.2); color: #00ff80; }
+        .status-passed { background: rgba(0, 128, 255, 0.2); color: #0080ff; }
+        .status-rejected { background: rgba(255, 0, 0, 0.2); color: #ff0000; }
 
-        .status-passed {
-            background: rgba(76, 175, 80, 0.2);
-            color: #4caf50;
-        }
-
-        .status-rejected {
-            background: rgba(244, 67, 54, 0.2);
-            color: #f44336;
-        }
-
-        .proposal-description {
-            color: #c0c0c0;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .voting-section {
+        .proposal-stats {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #cccccc;
+            margin-bottom: 10px;
+        }
+
+        .voting-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .voting-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0080, #00ff80);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* 投票控制 */
+        .voting-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .vote-input {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(128, 0, 255, 0.3);
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .vote-input:focus {
+            outline: none;
+            border-color: #ff0080;
+            box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
         }
 
         .vote-buttons {
             display: flex;
             gap: 10px;
+            margin: 20px 0;
         }
 
-        .vote-btn {
-            padding: 8px 16px;
+        .vote-button {
+            flex: 1;
+            background: linear-gradient(45deg, #8000ff, #ff0080);
             border: none;
-            border-radius: 6px;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 0.8rem;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
 
-        .vote-for {
-            background: rgba(76, 175, 80, 0.3);
-            color: #4caf50;
-        }
-
-        .vote-against {
-            background: rgba(244, 67, 54, 0.3);
-            color: #f44336;
-        }
-
-        .vote-abstain {
-            background: rgba(158, 158, 158, 0.3);
-            color: #9e9e9e;
-        }
-
-        .vote-btn:hover {
+        .vote-button:hover {
             transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(128, 0, 255, 0.3);
         }
 
-        .vote-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
+        /* 治理状态监控 */
+        .governance-status {
+            background: rgba(0, 255, 128, 0.1);
+            border: 2px solid rgba(0, 255, 128, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
         }
 
-        .vote-results {
-            display: flex;
-            gap: 15px;
-            font-size: 0.8rem;
+        .status-title {
+            color: #00ff80;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .vote-result {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .governance-stats {
+        .status-indicators {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
         }
 
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
+        .status-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .stat-number {
-            font-size: 2rem;
+        .status-label {
+            color: #cccccc;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .status-value {
+            font-size: 1.2rem;
             font-weight: bold;
-            color: #00d4ff;
-            margin-bottom: 5px;
+            color: #ff0080;
+            font-family: 'Courier New', monospace;
         }
 
-        .stat-label {
-            color: #a0a0a0;
-            font-size: 0.9rem;
+        /* 创建提案 */
+        .create-proposal {
+            background: rgba(255, 0, 128, 0.1);
+            border: 2px solid rgba(255, 0, 128, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
         }
 
-        .visualization-section {
-            grid-column: 1 / -1;
+        .create-title {
+            color: #ff0080;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        #governanceChart {
-            width: 100%;
-            height: 300px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .navigation {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
+        .proposal-form {
+            display: grid;
             gap: 15px;
-            z-index: 1000;
         }
 
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 10px 15px;
+        .form-input {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 0, 128, 0.3);
             color: #ffffff;
-            text-decoration: none;
+            padding: 12px;
+            border-radius: 8px;
             font-size: 0.9rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff0080;
+            box-shadow: 0 0 10px rgba(255, 0, 128, 0.3);
+        }
+
+        .form-textarea {
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 0, 128, 0.3);
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            border: none;
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
-        .nav-btn:hover {
-            background: rgba(0, 212, 255, 0.2);
-            border-color: #00d4ff;
-            transform: translateY(-2px);
+        .submit-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.3);
         }
 
-        .member-list {
+        /* 治理日志 */
+        .governance-log {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 0, 128, 0.3);
+        }
+
+        .log-title {
+            color: #ff0080;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .log-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            background: #ff0080;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .log-content {
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            color: #00ff80;
             max-height: 200px;
             overflow-y: auto;
         }
 
-        .member-item {
+        .log-entry {
+            margin: 5px 0;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(0, 255, 128, 0.1);
+        }
+
+        /* 导航 */
+        .navigation {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 6px;
-            margin-bottom: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 60px 0 40px;
         }
 
-        .member-name {
+        .nav-button {
+            background: linear-gradient(45deg, #1a0033, #330066);
+            border: 2px solid #ff0080;
+            color: #ff0080;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
             font-weight: bold;
-            color: #00d4ff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .member-stake {
-            color: #a0a0a0;
-            font-size: 0.9rem;
-        }
-
-        .member-voting-power {
-            color: #4caf50;
-            font-weight: bold;
+        .nav-button:hover {
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.3);
         }
 
         @media (max-width: 768px) {
-            .main-grid {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .governance-metrics {
                 grid-template-columns: 1fr;
             }
             
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .governance-stats {
+            .status-indicators {
                 grid-template-columns: repeat(2, 1fr);
             }
             
-            .navigation {
-                position: static;
-                justify-content: center;
-                margin-bottom: 20px;
+            .voting-controls {
+                grid-template-columns: 1fr;
             }
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00d4ff, #4ecdc4);
-            border-radius: 4px;
-            transition: width 0.3s ease;
+            
+            .vote-buttons {
+                flex-direction: column;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="navigation">
-        <a href="index.html" class="nav-btn">首页</a>
-        <a href="frequency-analysis.html" class="nav-btn">频率分析</a>
-        <a href="ai-evolution.html" class="nav-btn">AI演化</a>
-        <a href="economic-system.html" class="nav-btn">经济系统</a>
-    </div>
-
     <div class="container">
-        <div class="header">
-            <h1>DAO治理系统</h1>
-            <p>基于信息基因论的去中心化自治组织治理平台</p>
+        <header class="header">
+            <h1 class="title">DAO治理系统</h1>
+            <p class="subtitle">基于频率共识与四元协同的去中心化自治组织</p>
+        </header>
+
+        <div class="theory-banner">
+            <strong>治理机制：</strong>频率共识投票 + 四元价值评估 + 自旋权重分配 + 漩涡决策流<br>
+            <strong>数学基础：</strong>共识度 = η × C × f_vote，其中 η 为自旋一致性，C 为相干度，f_vote 为投票频率<br>
+            <strong>治理目标：</strong>实现高相干度的集体决策，防止价值偏离与系统性风险
         </div>
 
-        <div class="governance-stats">
-            <div class="stat-card">
-                <div class="stat-number" id="totalMembers">156</div>
-                <div class="stat-label">治理成员</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="activeProposals">8</div>
-                <div class="stat-label">活跃提案</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="totalVotes">2,847</div>
-                <div class="stat-label">总投票数</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="participationRate">73%</div>
-                <div class="stat-label">参与率</div>
-            </div>
-        </div>
+        <div class="main-content">
+            <!-- 治理机制面板 -->
+            <div class="governance-panel">
+                <h2 class="panel-title">
+                    <div class="panel-icon">🏛️</div>
+                    治理机制可视化
+                </h2>
 
-        <div class="main-grid">
-            <div class="card">
-                <h3>创建新提案</h3>
-                <form class="proposal-form" id="proposalForm">
-                    <div class="form-group">
-                        <label for="proposalTitle">提案标题</label>
-                        <input type="text" id="proposalTitle" placeholder="输入提案标题" required>
+                <div class="governance-visualization">
+                    <div class="consensus-network" id="consensus-network">
+                        <!-- 共识网络将通过JavaScript动态生成 -->
                     </div>
-                    <div class="form-group">
-                        <label for="proposalType">提案类型</label>
-                        <select id="proposalType" required>
-                            <option value="">选择类型</option>
-                            <option value="protocol">协议升级</option>
-                            <option value="economic">经济参数</option>
+                </div>
+
+                <div class="governance-metrics">
+                    <div class="governance-metric">
+                        <div class="metric-name">共识度</div>
+                        <div class="metric-value" id="consensus-level">0.00</div>
+                        <div class="metric-desc">C_dao = η × C × f_c</div>
+                    </div>
+                    <div class="governance-metric">
+                        <div class="metric-name">投票频率</div>
+                        <div class="metric-value" id="voting-frequency">0</div>
+                        <div class="metric-desc">f_vote (次/周)</div>
+                    </div>
+                    <div class="governance-metric">
+                        <div class="metric-name">治理效率</div>
+                        <div class="metric-value" id="governance-efficiency">0%</div>
+                        <div class="metric-desc">决策通过率</div>
+                    </div>
+                    <div class="governance-metric">
+                        <div class="metric-name">价值对齐</div>
+                        <div class="metric-value" id="value-alignment">0%</div>
+                        <div class="metric-desc">集体一致性</div>
+                    </div>
+                </div>
+
+                <div class="governance-status">
+                    <h3 class="status-title">DAO系统状态</h3>
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <div class="status-label">活跃成员</div>
+                            <div class="status-value" id="active-members">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">提案总数</div>
+                            <div class="status-value" id="total-proposals">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">通过提案</div>
+                            <div class="status-value" id="passed-proposals">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">治理代币</div>
+                            <div class="status-value" id="governance-tokens">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">质押率</div>
+                            <div class="status-value" id="staking-rate">0%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">风险指数</div>
+                            <div class="status-value" id="risk-index">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="create-proposal">
+                    <h3 class="create-title">创建新提案</h3>
+                    <div class="proposal-form">
+                        <input type="text" class="form-input" id="proposal-title" placeholder="提案标题">
+                        <textarea class="form-textarea" id="proposal-description" placeholder="提案描述"></textarea>
+                        <select class="form-input" id="proposal-category">
+                            <option value="economic">经济政策</option>
+                            <option value="technical">技术升级</option>
                             <option value="governance">治理规则</option>
-                            <option value="technical">技术改进</option>
+                            <option value="community">社区建设</option>
                         </select>
+                        <input type="number" class="form-input" id="proposal-duration" placeholder="投票周期(天)" min="1" max="30" value="7">
+                        <button class="submit-button" onclick="createProposal()">提交提案</button>
                     </div>
-                    <div class="form-group">
-                        <label for="proposalDescription">提案描述</label>
-                        <textarea id="proposalDescription" rows="4" placeholder="详细描述提案内容" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="proposalImpact">预期影响</label>
-                        <select id="proposalImpact" required>
-                            <option value="">选择影响级别</option>
-                            <option value="low">低影响</option>
-                            <option value="medium">中等影响</option>
-                            <option value="high">高影响</option>
-                            <option value="critical">关键影响</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn">提交提案</button>
-                </form>
-            </div>
-
-            <div class="card">
-                <h3>治理成员</h3>
-                <div class="member-list" id="memberList">
-                    <!-- 成员列表将通过JavaScript动态生成 -->
                 </div>
             </div>
 
-            <div class="card visualization-section">
-                <h3>治理可视化</h3>
-                <canvas id="governanceChart"></canvas>
-            </div>
+            <!-- 投票面板 -->
+            <div class="voting-panel">
+                <h2 class="panel-title">
+                    <div class="panel-icon">🗳️</div>
+                    实时投票系统
+                </h2>
 
-            <div class="card">
-                <h3>活跃提案</h3>
-                <div class="proposal-list" id="proposalList">
-                    <!-- 提案列表将通过JavaScript动态生成 -->
+                <div class="proposal-system">
+                    <h3 class="proposal-title">活跃提案</h3>
+                    <div class="proposal-list" id="proposal-list">
+                        <!-- 提案列表将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <div class="voting-controls">
+                    <input type="number" class="vote-input" id="vote-amount" placeholder="投票权重" min="1" max="1000" value="100">
+                    <select class="vote-input" id="vote-frequency">
+                        <option value="high">高频投票 (1次/天)</option>
+                        <option value="medium" selected>中频投票 (1次/周)</option>
+                        <option value="low">低频投票 (1次/月)</option>
+                    </select>
+                </div>
+
+                <div class="vote-buttons">
+                    <button class="vote-button" onclick="voteYes()">支持提案</button>
+                    <button class="vote-button" onclick="voteNo()">反对提案</button>
+                    <button class="vote-button" onclick="voteAbstain()">弃权</button>
+                </div>
+
+                <div class="governance-log">
+                    <h3 class="log-title">
+                        <div class="log-icon">📊</div>
+                        治理活动日志
+                    </h3>
+                    <div class="log-content" id="governance-log">
+                        <div class="log-entry">[系统启动] DAO治理系统初始化完成</div>
+                        <div class="log-entry">[共识校准] 四元治理模型基准设定完成</div>
+                        <div class="log-entry">[投票开放] 实时投票模块启动成功</div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- 导航 -->
+        <nav class="navigation">
+            <a href="index.html" class="nav-button">返回主页</a>
+            <a href="ckb-pyramid.html" class="nav-button">共识知识库</a>
+            <a href="frequency-coherence.html" class="nav-button">频率相干性</a>
+            <a href="ai-evolution.html" class="nav-button">AI自演化</a>
+            <a href="economic-system.html" class="nav-button">经济系统</a>
+        </nav>
     </div>
 
     <script>
-        class DAOGovernance {
-            constructor() {
-                this.proposals = [];
-                this.members = [];
-                this.userAddress = this.generateUserAddress();
-                this.init();
+        // 全局变量
+        let daoSystem = {
+            consensusLevel: 0.75,
+            votingFrequency: 7,
+            governanceEfficiency: 68.5,
+            valueAlignment: 82.3,
+            activeMembers: 1247,
+            totalProposals: 89,
+            passedProposals: 67,
+            governanceTokens: 2847300,
+            stakingRate: 73.2,
+            riskIndex: 0.23,
+            spinConsistency: 0.78,
+            coherenceLevel: 0.81,
+            votingPower: 100
+        };
+
+        let proposals = [
+            {
+                id: 1,
+                title: "增加AI演化安全预算",
+                description: "提议将AI自演化系统的安全监控预算提高30%，以增强秩序锁定机制",
+                category: "technical",
+                status: "active",
+                yesVotes: 156,
+                noVotes: 43,
+                abstainVotes: 21,
+                totalVotes: 220,
+                duration: 7,
+                remainingDays: 3,
+                creator: "0x7423...a9f2",
+                createTime: Date.now() - 4 * 24 * 60 * 60 * 1000
+            },
+            {
+                id: 2,
+                title: "优化四元价值评估权重",
+                description: "调整经济系统中自旋、频率、漩涡、相干度的权重分配比例",
+                category: "economic",
+                status: "active",
+                yesVotes: 189,
+                noVotes: 67,
+                abstainVotes: 34,
+                totalVotes: 290,
+                duration: 5,
+                remainingDays: 2,
+                creator: "0x8a91...e4b7",
+                createTime: Date.now() - 3 * 24 * 60 * 60 * 1000
+            },
+            {
+                id: 3,
+                title: "建立跨尺度验证标准",
+                description: "制定统一的跨尺度相干度验证标准，确保系统一致性",
+                category: "governance",
+                status: "active",
+                yesVotes: 234,
+                noVotes: 28,
+                abstainVotes: 15,
+                totalVotes: 277,
+                duration: 10,
+                remainingDays: 6,
+                creator: "0x5f62...c1d9",
+                createTime: Date.now() - 4 * 24 * 60 * 60 * 1000
             }
+        ];
 
-            generateUserAddress() {
-                return '0x' + Array.from({length: 40}, () => 
-                    '0123456789abcdef'[Math.floor(Math.random() * 16)]
-                ).join('');
-            }
+        let currentProposalId = 1;
+        let governanceLog = [];
 
-            init() {
-                this.generateMockData();
-                this.bindEvents();
-                this.renderMembers();
-                this.renderProposals();
-                this.updateStats();
-                this.initChart();
-                this.startRealTimeUpdates();
-            }
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            generateConsensusNetwork();
+            updateProposalList();
+            updateGovernanceDisplay();
+            startGovernanceSimulation();
+            addLogEntry('DAO治理系统启动 - 基于IGT v10.0四元统一框架');
+        });
 
-            generateMockData() {
-                // 生成模拟成员数据
-                const memberNames = [
-                    'Alice', 'Bob', 'Charlie', 'Diana', 'Eve', 'Frank', 'Grace', 'Henry',
-                    'Iris', 'Jack', 'Kate', 'Leo', 'Maya', 'Noah', 'Olivia', 'Paul',
-                    'Quinn', 'Rose', 'Sam', 'Tina', 'Uma', 'Victor', 'Wendy', 'Xavier'
-                ];
-
-                this.members = memberNames.map((name, index) => ({
-                    address: '0x' + Array.from({length: 40}, () => 
-                        '0123456789abcdef'[Math.floor(Math.random() * 16)]
-                    ).join(''),
-                    name: name,
-                    stake: Math.floor(Math.random() * 10000) + 1000,
-                    votingPower: Math.floor(Math.random() * 100) + 10,
-                    joinDate: new Date(Date.now() - Math.random() * 365 * 24 * 60 * 60 * 1000),
-                    reputation: Math.floor(Math.random() * 100)
-                }));
-
-                // 生成模拟提案数据
-                const proposalTypes = ['protocol', 'economic', 'governance', 'technical'];
-                const proposalImpacts = ['low', 'medium', 'high', 'critical'];
-                const proposalTitles = [
-                    '升级共识算法至v2.0',
-                    '调整INC代币经济模型',
-                    '修改治理投票规则',
-                    '优化频率分析引擎',
-                    '增加隐私保护功能',
-                    '扩展跨链互操作性',
-                    '改进AI演化机制',
-                    '增强安全审计流程'
-                ];
-
-                this.proposals = proposalTitles.map((title, index) => ({
-                    id: index + 1,
-                    title: title,
-                    type: proposalTypes[Math.floor(Math.random() * proposalTypes.length)],
-                    description: `这是一个关于${title}的重要提案，旨在提升系统的整体性能和安全性。提案经过了详细的技术评估和社区讨论。`,
-                    impact: proposalImpacts[Math.floor(Math.random() * proposalImpacts.length)],
-                    proposer: this.members[Math.floor(Math.random() * this.members.length)],
-                    createdAt: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000),
-                    votingDeadline: new Date(Date.now() + Math.random() * 14 * 24 * 60 * 60 * 1000),
-                    votes: {
-                        for: Math.floor(Math.random() * 100),
-                        against: Math.floor(Math.random() * 50),
-                        abstain: Math.floor(Math.random() * 20)
-                    },
-                    status: Math.random() > 0.5 ? 'active' : (Math.random() > 0.5 ? 'passed' : 'rejected'),
-                    totalVotingPower: Math.floor(Math.random() * 1000) + 500,
-                    userVoted: Math.random() > 0.7
-                }));
-            }
-
-            bindEvents() {
-                document.getElementById('proposalForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.createProposal();
-                });
-            }
-
-            createProposal() {
-                const title = document.getElementById('proposalTitle').value;
-                const type = document.getElementById('proposalType').value;
-                const description = document.getElementById('proposalDescription').value;
-                const impact = document.getElementById('proposalImpact').value;
-
-                const newProposal = {
-                    id: this.proposals.length + 1,
-                    title: title,
-                    type: type,
-                    description: description,
-                    impact: impact,
-                    proposer: this.members.find(m => m.address === this.userAddress) || this.members[0],
-                    createdAt: new Date(),
-                    votingDeadline: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7天后截止
-                    votes: { for: 0, against: 0, abstain: 0 },
-                    status: 'active',
-                    totalVotingPower: 0,
-                    userVoted: false
-                };
-
-                this.proposals.unshift(newProposal);
-                this.renderProposals();
-                this.updateStats();
+        // 生成共识网络可视化
+        function generateConsensusNetwork() {
+            const network = document.getElementById('consensus-network');
+            network.innerHTML = '';
+            
+            // 生成节点
+            const nodes = [];
+            const centerX = 50;
+            const centerY = 50;
+            const radius = 35;
+            
+            // 中心节点（核心治理）
+            const centerNode = document.createElement('div');
+            centerNode.className = 'network-node';
+            centerNode.style.left = centerX + '%';
+            centerNode.style.top = centerY + '%';
+            centerNode.style.width = '16px';
+            centerNode.style.height = '16px';
+            centerNode.style.background = 'radial-gradient(circle, #ff0080, #ff0040)';
+            network.appendChild(centerNode);
+            
+            // 外围节点（成员节点）
+            for (let i = 0; i < 12; i++) {
+                const angle = (i / 12) * 2 * Math.PI;
+                const x = centerX + radius * Math.cos(angle);
+                const y = centerY + radius * Math.sin(angle);
                 
-                // 重置表单
-                document.getElementById('proposalForm').reset();
+                const node = document.createElement('div');
+                node.className = 'network-node';
+                node.style.left = x + '%';
+                node.style.top = y + '%';
+                node.style.animationDelay = (i * 0.2) + 's';
                 
-                alert('提案创建成功！');
-            }
-
-            vote(proposalId, voteType) {
-                const proposal = this.proposals.find(p => p.id === proposalId);
-                if (!proposal || proposal.userVoted) return;
-
-                proposal.votes[voteType]++;
-                proposal.userVoted = true;
-                proposal.totalVotingPower += this.members.find(m => m.address === this.userAddress)?.votingPower || 50;
-
-                // 检查投票是否结束
-                const totalVotes = proposal.votes.for + proposal.votes.against + proposal.votes.abstain;
-                if (totalVotes >= 100 || new Date() > proposal.votingDeadline) {
-                    this.finalizeProposal(proposal);
-                }
-
-                this.renderProposals();
-                this.updateStats();
-            }
-
-            finalizeProposal(proposal) {
-                const totalVotes = proposal.votes.for + proposal.votes.against + proposal.votes.abstain;
-                const participationRate = totalVotes / this.members.length;
+                // 根据节点位置设置不同的颜色强度
+                const intensity = 0.6 + 0.4 * Math.cos(angle * 3);
+                node.style.opacity = intensity;
                 
-                if (participationRate < 0.1) { // 参与率低于10%，提案失败
-                    proposal.status = 'rejected';
-                } else if (proposal.votes.for > proposal.votes.against) {
-                    proposal.status = 'passed';
-                } else {
-                    proposal.status = 'rejected';
-                }
-            }
-
-            renderMembers() {
-                const memberList = document.getElementById('memberList');
-                const topMembers = this.members.slice(0, 10); // 显示前10个成员
-
-                memberList.innerHTML = topMembers.map(member => `
-                    <div class="member-item">
-                        <div>
-                            <div class="member-name">${member.name}</div>
-                            <div class="member-stake">质押: ${member.stake} INC</div>
-                        </div>
-                        <div class="member-voting-power">${member.votingPower}票</div>
-                    </div>
-                `).join('');
-            }
-
-            renderProposals() {
-                const proposalList = document.getElementById('proposalList');
-                const activeProposals = this.proposals.filter(p => p.status === 'active');
-
-                proposalList.innerHTML = activeProposals.map(proposal => {
-                    const totalVotes = proposal.votes.for + proposal.votes.against + proposal.votes.abstain;
-                    const forPercentage = totalVotes > 0 ? (proposal.votes.for / totalVotes * 100).toFixed(1) : 0;
-                    const againstPercentage = totalVotes > 0 ? (proposal.votes.against / totalVotes * 100).toFixed(1) : 0;
-                    const abstainPercentage = totalVotes > 0 ? (proposal.votes.abstain / totalVotes * 100).toFixed(1) : 0;
-
-                    return `
-                        <div class="proposal-item">
-                            <div class="proposal-header">
-                                <div class="proposal-title">${proposal.title}</div>
-                                <div class="proposal-status status-${proposal.status}">${this.getStatusText(proposal.status)}</div>
-                            </div>
-                            <div class="proposal-description">${proposal.description}</div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${forPercentage}%"></div>
-                            </div>
-                            <div class="voting-section">
-                                <div class="vote-results">
-                                    <div class="vote-result">
-                                        <span>✅ ${proposal.votes.for} (${forPercentage}%)</span>
-                                    </div>
-                                    <div class="vote-result">
-                                        <span>❌ ${proposal.votes.against} (${againstPercentage}%)</span>
-                                    </div>
-                                    <div class="vote-result">
-                                        <span>⚖️ ${proposal.votes.abstain} (${abstainPercentage}%)</span>
-                                    </div>
-                                </div>
-                                <div class="vote-buttons">
-                                    <button class="vote-btn vote-for" 
-                                            onclick="daoGovernance.vote(${proposal.id}, 'for')"
-                                            ${proposal.userVoted ? 'disabled' : ''}>
-                                        支持
-                                    </button>
-                                    <button class="vote-btn vote-against" 
-                                            onclick="daoGovernance.vote(${proposal.id}, 'against')"
-                                            ${proposal.userVoted ? 'disabled' : ''}>
-                                        反对
-                                    </button>
-                                    <button class="vote-btn vote-abstain" 
-                                            onclick="daoGovernance.vote(${proposal.id}, 'abstain')"
-                                            ${proposal.userVoted ? 'disabled' : ''}>
-                                        弃权
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }
-
-            getStatusText(status) {
-                const statusMap = {
-                    'active': '进行中',
-                    'passed': '已通过',
-                    'rejected': '已拒绝'
-                };
-                return statusMap[status] || status;
-            }
-
-            updateStats() {
-                const totalMembers = this.members.length;
-                const activeProposals = this.proposals.filter(p => p.status === 'active').length;
-                const totalVotes = this.proposals.reduce((sum, p) => 
-                    sum + p.votes.for + p.votes.against + p.votes.abstain, 0
-                );
-                const participationRate = totalVotes > 0 ? 
-                    Math.round((totalVotes / (totalMembers * this.proposals.length)) * 100) : 0;
-
-                document.getElementById('totalMembers').textContent = totalMembers;
-                document.getElementById('activeProposals').textContent = activeProposals;
-                document.getElementById('totalVotes').textContent = totalVotes.toLocaleString();
-                document.getElementById('participationRate').textContent = participationRate + '%';
-            }
-
-            initChart() {
-                const canvas = document.getElementById('governanceChart');
-                const ctx = canvas.getContext('2d');
+                network.appendChild(node);
+                nodes.push({element: node, x, y, angle});
                 
-                // 设置canvas尺寸
-                const rect = canvas.getBoundingClientRect();
-                canvas.width = rect.width * window.devicePixelRatio;
-                canvas.height = rect.height * window.devicePixelRatio;
-                ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-
-                this.drawChart(ctx, rect.width, rect.height);
-            }
-
-            drawChart(ctx, width, height) {
-                const centerX = width / 2;
-                const centerY = height / 2;
-                const radius = Math.min(width, height) / 3;
-
-                // 清空画布
-                ctx.clearRect(0, 0, width, height);
-
-                // 绘制治理结构图
-                this.drawGovernanceStructure(ctx, centerX, centerY, radius);
+                // 创建连接线
+                const link = document.createElement('div');
+                link.className = 'consensus-link';
                 
-                // 绘制统计数据
-                this.drawStatistics(ctx, width, height);
-            }
-
-            drawGovernanceStructure(ctx, centerX, centerY, radius) {
-                const layers = [
-                    { name: '核心治理', color: '#00d4ff', radius: radius * 0.3 },
-                    { name: '社区治理', color: '#4ecdc4', radius: radius * 0.6 },
-                    { name: '边缘治理', color: '#ff6b6b', radius: radius * 0.9 }
-                ];
-
-                layers.forEach((layer, index) => {
-                    // 绘制圆圈
-                    ctx.beginPath();
-                    ctx.arc(centerX, centerY, layer.radius, 0, 2 * Math.PI);
-                    ctx.strokeStyle = layer.color;
-                    ctx.lineWidth = 2;
-                    ctx.stroke();
-
-                    // 绘制标签
-                    ctx.fillStyle = layer.color;
-                    ctx.font = '12px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(layer.name, centerX, centerY - layer.radius - 10);
-                });
-
-                // 绘制连接线
-                for (let i = 0; i < 8; i++) {
-                    const angle = (i / 8) * 2 * Math.PI;
-                    ctx.beginPath();
-                    ctx.moveTo(centerX + layers[0].radius * Math.cos(angle), 
-                              centerY + layers[0].radius * Math.sin(angle));
-                    ctx.lineTo(centerX + layers[2].radius * Math.cos(angle), 
-                              centerY + layers[2].radius * Math.sin(angle));
-                    ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-
-            drawStatistics(ctx, width, height) {
-                const stats = [
-                    { label: '提案通过率', value: this.calculatePassRate(), x: 50, y: height - 60 },
-                    { label: '平均参与率', value: this.calculateAvgParticipation(), x: width / 2, y: height - 60 },
-                    { label: '治理效率', value: this.calculateGovernanceEfficiency(), x: width - 50, y: height - 60 }
-                ];
-
-                stats.forEach(stat => {
-                    ctx.fillStyle = '#00d4ff';
-                    ctx.font = 'bold 16px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(stat.value + '%', stat.x, stat.y);
-                    
-                    ctx.fillStyle = '#a0a0a0';
-                    ctx.font = '12px Arial';
-                    ctx.fillText(stat.label, stat.x, stat.y + 15);
-                });
-            }
-
-            calculatePassRate() {
-                if (this.proposals.length === 0) return 0;
-                const passed = this.proposals.filter(p => p.status === 'passed').length;
-                return Math.round((passed / this.proposals.length) * 100);
-            }
-
-            calculateAvgParticipation() {
-                if (this.proposals.length === 0) return 0;
-                const totalVotes = this.proposals.reduce((sum, p) => 
-                    sum + p.votes.for + p.votes.against + p.votes.abstain, 0
-                );
-                return Math.round((totalVotes / (this.members.length * this.proposals.length)) * 100);
-            }
-
-            calculateGovernanceEfficiency() {
-                const passRate = this.calculatePassRate();
-                const participationRate = this.calculateAvgParticipation();
-                return Math.round((passRate + participationRate) / 2);
-            }
-
-            startRealTimeUpdates() {
-                // 模拟实时数据更新
-                setInterval(() => {
-                    // 随机更新一些投票数据
-                    this.proposals.forEach(proposal => {
-                        if (proposal.status === 'active' && Math.random() > 0.8) {
-                            const voteTypes = ['for', 'against', 'abstain'];
-                            const randomVote = voteTypes[Math.floor(Math.random() * voteTypes.length)];
-                            proposal.votes[randomVote] += Math.floor(Math.random() * 3) + 1;
-                        }
-                    });
-                    
-                    this.renderProposals();
-                    this.updateStats();
-                    this.initChart();
-                }, 5000); // 每5秒更新一次
+                const dx = x - centerX;
+                const dy = y - centerY;
+                const length = Math.sqrt(dx * dx + dy * dy);
+                const angle_deg = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                link.style.left = centerX + '%';
+                link.style.top = centerY + '%';
+                link.style.width = length + '%';
+                link.style.transform = `rotate(${angle_deg}deg)`;
+                link.style.transformOrigin = 'left center';
+                link.style.animationDelay = (i * 0.1) + 's';
+                
+                network.appendChild(link);
             }
         }
 
-        // 初始化DAO治理系统
-        const daoGovernance = new DAOGovernance();
+        // 更新提案列表
+        function updateProposalList() {
+            const proposalList = document.getElementById('proposal-list');
+            proposalList.innerHTML = '';
+            
+            proposals.forEach(proposal => {
+                const proposalItem = document.createElement('div');
+                proposalItem.className = 'proposal-item';
+                proposalItem.onclick = () => selectProposal(proposal.id);
+                
+                const approvalRate = proposal.yesVotes / proposal.totalVotes * 100;
+                const statusClass = proposal.status === 'active' ? 'status-active' : 
+                                  proposal.status === 'passed' ? 'status-passed' : 'status-rejected';
+                
+                proposalItem.innerHTML = `
+                    <div class="proposal-header">
+                        <div class="proposal-name">${proposal.title}</div>
+                        <div class="proposal-status ${statusClass}">${getStatusText(proposal.status)}</div>
+                    </div>
+                    <div class="proposal-stats">
+                        <span>支持: ${proposal.yesVotes}</span>
+                        <span>反对: ${proposal.noVotes}</span>
+                        <span>弃权: ${proposal.abstainVotes}</span>
+                        <span>剩余: ${proposal.remainingDays}天</span>
+                    </div>
+                    <div class="voting-bar">
+                        <div class="voting-progress" style="width: ${approvalRate}%"></div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #888; margin-top: 5px;">
+                        通过率: ${approvalRate.toFixed(1)}% | 创建者: ${proposal.creator}
+                    </div>
+                `;
+                
+                proposalList.appendChild(proposalItem);
+            });
+        }
 
-        // 响应式处理
-        window.addEventListener('resize', () => {
-            daoGovernance.initChart();
-        });
+        // 获取状态文本
+        function getStatusText(status) {
+            const statusMap = {
+                'active': '进行中',
+                'passed': '已通过',
+                'rejected': '已否决'
+            };
+            return statusMap[status] || '未知';
+        }
+
+        // 选择提案
+        function selectProposal(proposalId) {
+            currentProposalId = proposalId;
+            const proposal = proposals.find(p => p.id === proposalId);
+            if (proposal) {
+                addLogEntry(`选中提案: "${proposal.title}" (ID: ${proposalId})`);
+                // 可以在这里添加更多选中后的操作
+            }
+        }
+
+        // 投票支持
+        function voteYes() {
+            const voteAmount = parseInt(document.getElementById('vote-amount').value) || 0;
+            if (voteAmount <= 0) {
+                addLogEntry('❌ 投票权重必须大于0');
+                return;
+            }
+            
+            const proposal = proposals.find(p => p.id === currentProposalId);
+            if (!proposal || proposal.status !== 'active') {
+                addLogEntry('⚠️ 请选择有效的活跃提案');
+                return;
+            }
+            
+            // 计算投票影响力（基于四元治理模型）
+            const influence = calculateVotingInfluence(voteAmount, 'yes');
+            proposal.yesVotes += influence.votes;
+            proposal.totalVotes += influence.votes;
+            
+            addLogEntry(`🟢 支持投票: 权重${voteAmount} → 影响力${influence.votes} (共识度${influence.consensus.toFixed(3)})`);
+            updateProposalList();
+            updateGovernanceDisplay();
+        }
+
+        // 投票反对
+        function voteNo() {
+            const voteAmount = parseInt(document.getElementById('vote-amount').value) || 0;
+            if (voteAmount <= 0) {
+                addLogEntry('❌ 投票权重必须大于0');
+                return;
+            }
+            
+            const proposal = proposals.find(p => p.id === currentProposalId);
+            if (!proposal || proposal.status !== 'active') {
+                addLogEntry('⚠️ 请选择有效的活跃提案');
+                return;
+            }
+            
+            const influence = calculateVotingInfluence(voteAmount, 'no');
+            proposal.noVotes += influence.votes;
+            proposal.totalVotes += influence.votes;
+            
+            addLogEntry(`🔴 反对投票: 权重${voteAmount} → 影响力${influence.votes} (共识度${influence.consensus.toFixed(3)})`);
+            updateProposalList();
+            updateGovernanceDisplay();
+        }
+
+        // 弃权投票
+        function voteAbstain() {
+            const voteAmount = parseInt(document.getElementById('vote-amount').value) || 0;
+            if (voteAmount <= 0) {
+                addLogEntry('❌ 投票权重必须大于0');
+                return;
+            }
+            
+            const proposal = proposals.find(p => p.id === currentProposalId);
+            if (!proposal || proposal.status !== 'active') {
+                addLogEntry('⚠️ 请选择有效的活跃提案');
+                return;
+            }
+            
+            const influence = calculateVotingInfluence(voteAmount, 'abstain');
+            proposal.abstainVotes += influence.votes;
+            proposal.totalVotes += influence.votes;
+            
+            addLogEntry(`⚪ 弃权投票: 权重${voteAmount} → 影响力${influence.votes} (共识度${influence.consensus.toFixed(3)})`);
+            updateProposalList();
+            updateGovernanceDisplay();
+        }
+
+        // 计算投票影响力（基于四元治理模型）
+        function calculateVotingInfluence(voteAmount, voteType) {
+            // 基础投票权重
+            let baseVotes = Math.floor(voteAmount / 10); // 每10个代币对应1票
+            
+            // 四元治理加成
+            const spinBonus = daoSystem.spinConsistency * 0.3; // 自旋一致性加成
+            const coherenceBonus = daoSystem.coherenceLevel * 0.4; // 相干度加成
+            const consensusBonus = daoSystem.consensusLevel * 0.3; // 共识度加成
+            
+            const totalBonus = 1 + spinBonus + coherenceBonus + consensusBonus;
+            const finalVotes = Math.floor(baseVotes * totalBonus);
+            
+            // 投票类型影响共识度
+            let consensusImpact = 0;
+            if (voteType === 'yes') {
+                consensusImpact = 0.01 * daoSystem.coherenceLevel;
+            } else if (voteType === 'no') {
+                consensusImpact = -0.01 * (1 - daoSystem.coherenceLevel);
+            }
+            
+            return {
+                votes: finalVotes,
+                consensus: consensusImpact,
+                bonus: totalBonus
+            };
+        }
+
+        // 创建新提案
+        function createProposal() {
+            const title = document.getElementById('proposal-title').value.trim();
+            const description = document.getElementById('proposal-description').value.trim();
+            const category = document.getElementById('proposal-category').value;
+            const duration = parseInt(document.getElementById('proposal-duration').value) || 7;
+            
+            if (!title || !description) {
+                addLogEntry('❌ 提案标题和描述不能为空');
+                return;
+            }
+            
+            if (title.length < 5 || description.length < 20) {
+                addLogEntry('⚠️ 标题至少5字符，描述至少20字符');
+                return;
+            }
+            
+            const newProposal = {
+                id: proposals.length + 1,
+                title: title,
+                description: description,
+                category: category,
+                status: 'active',
+                yesVotes: 0,
+                noVotes: 0,
+                abstainVotes: 0,
+                totalVotes: 0,
+                duration: duration,
+                remainingDays: duration,
+                creator: "0x" + Math.random().toString(16).substr(2, 8) + "..." + Math.random().toString(16).substr(2, 4),
+                createTime: Date.now()
+            };
+            
+            proposals.push(newProposal);
+            daoSystem.totalProposals++;
+            
+            addLogEntry(`📝 新提案创建: "${title}" (类别: ${getCategoryText(category)})`);
+            addLogEntry(`📊 投票周期: ${duration}天 | 创建者: ${newProposal.creator}`);
+            
+            // 清空表单
+            document.getElementById('proposal-title').value = '';
+            document.getElementById('proposal-description').value = '';
+            
+            updateProposalList();
+            updateGovernanceDisplay();
+        }
+
+        // 获取类别文本
+        function getCategoryText(category) {
+            const categoryMap = {
+                'economic': '经济政策',
+                'technical': '技术升级',
+                'governance': '治理规则',
+                'community': '社区建设'
+            };
+            return categoryMap[category] || '其他';
+        }
+
+        // 更新治理显示
+        function updateGovernanceDisplay() {
+            // 计算治理指标
+            const totalVotes = proposals.reduce((sum, p) => sum + p.totalVotes, 0);
+            const passedCount = proposals.filter(p => p.status === 'passed').length;
+            
+            daoSystem.governanceEfficiency = daoSystem.totalProposals > 0 ? 
+                (passedCount / daoSystem.totalProposals * 100) : 0;
+            
+            daoSystem.valueAlignment = daoSystem.coherenceLevel * daoSystem.consensusLevel * 100;
+            
+            // 风险指数计算
+            daoSystem.riskIndex = (1 - daoSystem.consensusLevel) * 0.4 + 
+                                (1 - daoSystem.coherenceLevel) * 0.3 + 
+                                (1 - daoSystem.stakingRate / 100) * 0.3;
+            
+            // 更新显示
+            document.getElementById('consensus-level').textContent = daoSystem.consensusLevel.toFixed(3);
+            document.getElementById('voting-frequency').textContent = daoSystem.votingFrequency;
+            document.getElementById('governance-efficiency').textContent = daoSystem.governanceEfficiency.toFixed(1) + '%';
+            document.getElementById('value-alignment').textContent = daoSystem.valueAlignment.toFixed(1) + '%';
+            
+            document.getElementById('active-members').textContent = daoSystem.activeMembers.toLocaleString();
+            document.getElementById('total-proposals').textContent = daoSystem.totalProposals;
+            document.getElementById('passed-proposals').textContent = passedCount;
+            document.getElementById('governance-tokens').textContent = daoSystem.governanceTokens.toLocaleString();
+            document.getElementById('staking-rate').textContent = daoSystem.stakingRate.toFixed(1) + '%';
+            document.getElementById('risk-index').textContent = daoSystem.riskIndex.toFixed(3);
+        }
+
+        // 开始治理模拟
+        function startGovernanceSimulation() {
+            setInterval(() => {
+                // 随机波动治理参数
+                daoSystem.consensusLevel += (Math.random() - 0.5) * 0.02;
+                daoSystem.coherenceLevel += (Math.random() - 0.5) * 0.015;
+                daoSystem.spinConsistency += (Math.random() - 0.5) * 0.01;
+                
+                // 限制范围
+                daoSystem.consensusLevel = Math.max(0, Math.min(1, daoSystem.consensusLevel));
+                daoSystem.coherenceLevel = Math.max(0, Math.min(1, daoSystem.coherenceLevel));
+                daoSystem.spinConsistency = Math.max(0, Math.min(1, daoSystem.spinConsistency));
+                
+                // 更新活跃成员数
+                daoSystem.activeMembers += Math.floor((Math.random() - 0.5) * 10);
+                daoSystem.activeMembers = Math.max(100, Math.min(2000, daoSystem.activeMembers));
+                
+                // 更新提案剩余天数
+                proposals.forEach(proposal => {
+                    if (proposal.status === 'active') {
+                        proposal.remainingDays = Math.max(0, proposal.remainingDays - 0.01);
+                        
+                        // 检查是否到期
+                        if (proposal.remainingDays <= 0) {
+                            const approvalRate = proposal.yesVotes / proposal.totalVotes;
+                            proposal.status = approvalRate >= 0.6 ? 'passed' : 'rejected';
+                            
+                            addLogEntry(`📋 提案结束: "${proposal.title}" → ${proposal.status === 'passed' ? '✅ 通过' : '❌ 否决'}`);
+                            addLogEntry(`📊 最终投票: 支持${proposal.yesVotes} | 反对${proposal.noVotes} | 通过率${(approvalRate * 100).toFixed(1)}%`);
+                        }
+                    }
+                });
+                
+                updateGovernanceDisplay();
+                
+                // 偶尔添加随机事件
+                if (Math.random() < 0.05) {
+                    const events = [
+                        '新成员加入DAO治理',
+                        '治理代币质押增加',
+                        '提案讨论热度上升',
+                        '共识达成效率提升'
+                    ];
+                    const event = events[Math.floor(Math.random() * events.length)];
+                    addLogEntry(`🌟 治理动态: ${event}`);
+                }
+            }, 5000);
+        }
+
+        // 添加日志条目
+        function addLogEntry(message) {
+            const logContent = document.getElementById('governance-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            
+            logContent.appendChild(entry);
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            // 保持最多30条记录
+            const entries = logContent.querySelectorAll('.log-entry');
+            if (entries.length > 30) {
+                entries[0].remove();
+            }
+        }
     </script>
 </body>
 </html>

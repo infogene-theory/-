@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>信息基因论 · 新信息元宇宙</title>
+    <title>信息基因论新信息元宇宙 - Demo中心</title>
     <style>
         * {
             margin: 0;
@@ -12,20 +12,72 @@
         }
 
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #16213e);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
             color: #ffffff;
+            min-height: 100vh;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 背景动画粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(0, 212, 255, 0.6);
+            width: 3px;
+            height: 3px;
+        }
+
+        .particle:nth-child(even) {
+            background: rgba(255, 107, 107, 0.6);
+            width: 2px;
+            height: 2px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(1);
+                opacity: 0;
+            }
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* 头部区域 */
         .header {
             text-align: center;
+            margin-bottom: 60px;
             padding: 40px 0;
             position: relative;
         }
@@ -38,386 +90,705 @@
             transform: translateX(-50%);
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3), transparent);
             border-radius: 50%;
-            animation: pulse 3s ease-in-out infinite;
+            animation: pulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4, #45b7d1, #f093fb);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 6s ease-in-out infinite;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            color: #a0a0a0;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .header .version {
+            font-size: 1em;
+            color: #00d4ff;
+            background: rgba(0, 212, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-            50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
+            50% { transform: translateX(-50%) scale(1.2); opacity: 0.6; }
         }
 
-        .title {
-            font-size: 3rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 5s ease infinite;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .core-concepts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .concept-card {
+        /* 理论介绍区域 */
+        .theory-section {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(0, 255, 255, 0.3);
-            border-radius: 15px;
-            padding: 30px;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
 
-        .concept-card::before {
+        .theory-section::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
-            opacity: 0;
+            background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
         }
 
-        .concept-card:hover::before {
-            opacity: 1;
-            animation: shimmer 2s ease-in-out infinite;
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .theory-title {
+            font-size: 2.2em;
+            color: #00d4ff;
+            margin-bottom: 25px;
+            text-align: center;
         }
 
-        .concept-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
-            border-color: rgba(0, 255, 255, 0.6);
+        .theory-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
         }
 
-        .concept-title {
-            font-size: 1.5rem;
-            color: #00ffff;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .concept-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .concept-description {
-            color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .concept-formula {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            border-left: 4px solid #00ff00;
-            margin: 15px 0;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 60px 0;
-        }
-
-        .nav-button {
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            border: 2px solid #00ffff;
-            color: #00ffff;
-            padding: 15px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
+        .theory-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .theory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .theory-card h3 {
+            color: #4ecdc4;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .theory-card p {
+            line-height: 1.6;
+            color: #d0d0d0;
+        }
+
+        /* Demo卡片网格 */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .demo-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .nav-button::before {
+        .demo-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.5s ease;
         }
 
-        .nav-button:hover::before {
+        .demo-card:hover::before {
             left: 100%;
         }
 
-        .nav-button:hover {
-            background: linear-gradient(45deg, #00ffff, #0080ff);
-            color: #000;
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+        .demo-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.4);
         }
 
-        .frequency-visualization {
-            margin: 60px 0;
+        .demo-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            position: relative;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .demo-card:nth-child(1) .demo-icon {
+            background: linear-gradient(45deg, #00d4ff, #0099cc);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+
+        .demo-card:nth-child(2) .demo-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+            box-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .demo-card:nth-child(3) .demo-icon {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            box-shadow: 0 0 30px rgba(78, 205, 196, 0.5);
+        }
+
+        .demo-card:nth-child(4) .demo-icon {
+            background: linear-gradient(45deg, #45b7d1, #96c93d);
+            box-shadow: 0 0 30px rgba(69, 183, 209, 0.5);
+        }
+
+        .demo-card:nth-child(5) .demo-icon {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            box-shadow: 0 0 30px rgba(240, 147, 251, 0.5);
+        }
+
+        .demo-card:nth-child(6) .demo-icon {
+            background: linear-gradient(45deg, #ffa726, #ff9800);
+            box-shadow: 0 0 30px rgba(255, 167, 38, 0.5);
+        }
+
+        .demo-title {
+            font-size: 1.5em;
+            color: #ffffff;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        .freq-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 30px 0;
+        .demo-description {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+            min-height: 80px;
         }
 
-        .freq-wave {
-            width: 150px;
-            height: 100px;
+        .demo-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .demo-features li {
+            padding: 8px 0;
+            color: #d0d0d0;
             position: relative;
-            background: rgba(0, 255, 255, 0.1);
+            padding-left: 25px;
+        }
+
+        .demo-features li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #00d4ff;
+            font-size: 0.8em;
+        }
+
+        .demo-link {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.2), rgba(0, 212, 255, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
             border-radius: 10px;
+            color: #00d4ff;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
 
-        .wave-line {
+        .demo-link::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 0;
+            top: 0;
+            left: -100%;
             width: 100%;
-            height: 2px;
-            background: #00ffff;
-            transform-origin: center;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+            transition: left 0.5s ease;
         }
 
-        .wave-line:nth-child(1) { animation: wave1 2s ease-in-out infinite; }
-        .wave-line:nth-child(2) { animation: wave2 2.5s ease-in-out infinite; }
-        .wave-line:nth-child(3) { animation: wave3 3s ease-in-out infinite; }
-
-        @keyframes wave1 {
-            0%, 100% { transform: translateY(0) scaleY(1); }
-            50% { transform: translateY(-10px) scaleY(1.5); }
+        .demo-link:hover::before {
+            left: 100%;
         }
 
-        @keyframes wave2 {
-            0%, 100% { transform: translateY(0) scaleY(1); }
-            50% { transform: translateY(10px) scaleY(2); }
+        .demo-link:hover {
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.2));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
         }
 
-        @keyframes wave3 {
-            0%, 100% { transform: translateY(0) scaleY(1); }
-            50% { transform: translateY(-5px) scaleY(1.2); }
+        /* 系统状态面板 */
+        .status-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        .status-title {
+            font-size: 1.8em;
+            color: #00d4ff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .status-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        .status-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4ecdc4;
+            margin-bottom: 5px;
+        }
+
+        .status-label {
+            color: #a0a0a0;
+            font-size: 0.9em;
+        }
+
+        /* 页脚 */
         .footer {
             text-align: center;
             padding: 40px 0;
-            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             margin-top: 60px;
         }
 
-        .footer-text {
-            color: #888;
-            font-size: 0.9rem;
+        .footer p {
+            color: #808080;
+            margin-bottom: 10px;
         }
 
+        .footer .links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .footer .links a {
+            color: #00d4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #4ecdc4;
+        }
+
+        /* 响应式设计 */
         @media (max-width: 768px) {
-            .title {
-                font-size: 2rem;
+            .header h1 {
+                font-size: 2.5em;
             }
             
-            .core-concepts {
+            .demo-grid {
                 grid-template-columns: 1fr;
             }
             
-            .navigation {
-                flex-direction: column;
-                align-items: center;
+            .theory-content {
+                grid-template-columns: 1fr;
             }
+            
+            .status-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer .links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* 加载动画 */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(0, 212, 255, 0.3);
+            border-top: 3px solid #00d4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- 背景粒子效果 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
     <div class="container">
-        <header class="header">
-            <h1 class="title">信息基因论 · 新信息元宇宙</h1>
-            <p class="subtitle">基于频率相干性与秩序锁定机制的去中心化共识网络</p>
-        </header>
+        <!-- 头部区域 -->
+        <div class="header">
+            <h1>信息基因论新信息元宇宙</h1>
+            <p class="subtitle">基于自旋-频率-漩涡-相干四元统一框架的革命性信息生态系统</p>
+            <div class="version">理论版本 v10.0 | Demo集成中心</div>
+        </div>
 
-        <section class="core-concepts">
-            <div class="concept-card">
-                <h3 class="concept-title">
-                    <div class="concept-icon">IG</div>
-                    信息基因 (IG)
-                </h3>
-                <p class="concept-description">
-                    信息基因是元宇宙中的基本信息单元，包含数据结构、语义内容和频率特征。每个IG都具有独特的频率签名，通过频率相干性实现信息的有序组织。
-                </p>
-                <div class="concept-formula">
-                    IG = {数据结构, 语义内容, 频率特征}<br>
-                    频率相干性: C_coh = |Σ(f_i × f_j)| / (N × Σ|f_i|²)
+        <!-- 理论介绍区域 -->
+        <div class="theory-section">
+            <h2 class="theory-title">🧬 理论核心框架</h2>
+            <div class="theory-content">
+                <div class="theory-card">
+                    <h3>🔄 自旋 (Spin)</h3>
+                    <p>信息的内在旋转特性，决定了知识的基本状态和稳定性。自旋速度影响信息的传播效率和存储可靠性。</p>
+                </div>
+                <div class="theory-card">
+                    <h3>📡 频率 (Frequency)</h3>
+                    <p>信息的振动特性，决定了知识之间的共振和同步能力。高频信息具有更强的穿透力和影响力。</p>
+                </div>
+                <div class="theory-card">
+                    <h3>🌪️ 漩涡 (Vortex)</h3>
+                    <p>信息的聚集和收敛特性，形成知识的引力中心。漩涡强度决定了信息系统的凝聚力和吸引力。</p>
+                </div>
+                <div class="theory-card">
+                    <h3>🔗 相干 (Coherence)</h3>
+                    <p>信息之间的协调一致性，是系统稳定性和效率的关键。高相干性确保信息系统的和谐运行。</p>
                 </div>
             </div>
+        </div>
 
-            <div class="concept-card">
-                <h3 class="concept-title">
-                    <div class="concept-icon">RV</div>
-                    RVS演化循环
-                </h3>
-                <p class="concept-description">
-                    复制-变异-选择(RVS)机制驱动信息基因的演化。通过多尺度验证(CV < 0.2)和秩序度计算，实现信息的自适应优化。
-                </p>
-                <div class="concept-formula">
-                    秩序度: O_freq = 1 - S_freq/log₂N<br>
-                    多尺度验证: CV = σ_μ/μ_avg < 0.2
+        <!-- 系统状态面板 -->
+        <div class="status-panel">
+            <h2 class="status-title">🌐 系统运行状态</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-value" id="total-users">1,247</div>
+                    <div class="status-label">活跃用户</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="knowledge-nodes">8,932</div>
+                    <div class="status-label">知识节点</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="coherence-level">94.7%</div>
+                    <div class="status-label">系统相干度</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="system-stability">91.2</div>
+                    <div class="status-label">稳定性指数</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="rvs-coefficient">0.87</div>
+                    <div class="status-label">RVS系数</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value" id="entropy-level">23.4</div>
+                    <div class="status-label">熵值水平</div>
                 </div>
             </div>
+        </div>
 
-            <div class="concept-card">
-                <h3 class="concept-title">
-                    <div class="concept-icon">CK</div>
-                    共识知识库
-                </h3>
-                <p class="concept-description">
-                    三层金字塔结构的共识知识库：基础共识层、领域共识层、创新共识层。通过DAO治理和区块链验证确保知识的可信性和一致性。
-                </p>
-                <div class="concept-formula">
-                    CKB = Σ(IG_i × W_i × C_coh_i)<br>
-                    权重分配: W_i = f(贡献度, 频率稳定性)
-                </div>
+        <!-- Demo功能卡片 -->
+        <div class="demo-grid">
+            <div class="demo-card">
+                <div class="demo-icon">🧠</div>
+                <h3 class="demo-title">共识知识库</h3>
+                <p class="demo-description">基于信息基因理论构建的分布式知识共识系统，实现知识的去中心化存储和智能检索。</p>
+                <ul class="demo-features">
+                    <li>智能知识图谱构建</li>
+                    <li>共识机制算法</li>
+                    <li>语义关联分析</li>
+                    <li>知识价值评估</li>
+                </ul>
+                <a href="consensus-knowledge.html" class="demo-link">进入系统 →</a>
             </div>
 
-            <div class="concept-card">
-                <h3 class="concept-title">
-                    <div class="concept-icon">AI</div>
-                    AI自演化
-                </h3>
-                <p class="concept-description">
-                    AI系统通过频率共振校准实现自演化，在秩序锁定机制约束下，确保演化方向与人类共识知识库保持一致，防止价值偏离。
-                </p>
-                <div class="concept-formula">
-                    频率锁定: Δf_lock = α × (C_coh - C_target)<br>
-                    演化约束: |ΔValue| < ε × Value_CKB
-                </div>
+            <div class="demo-card">
+                <div class="demo-icon">📊</div>
+                <h3 class="demo-title">频率相干性</h3>
+                <p class="demo-description">实时可视化展示知识之间的频率相干性，基于RVS相关系数量化知识价值。</p>
+                <ul class="demo-features">
+                    <li>实时频率监测</li>
+                    <li>RVS系数计算</li>
+                    <li>知识价值评估</li>
+                    <li>动态波形显示</li>
+                </ul>
+                <a href="frequency-coherence.html" class="demo-link">进入系统 →</a>
             </div>
-        </section>
 
-        <section class="frequency-visualization">
-            <h2 style="color: #00ffff; margin-bottom: 30px;">频率相干性可视化</h2>
-            <div class="freq-container">
-                <div class="freq-wave">
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                </div>
-                <div class="freq-wave">
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                </div>
-                <div class="freq-wave">
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                    <div class="wave-line"></div>
-                </div>
+            <div class="demo-card">
+                <div class="demo-icon">🤖</div>
+                <h3 class="demo-title">AI自我进化</h3>
+                <p class="demo-description">基于信息基因论的AI自进化系统，实现频率共振校准和秩序锁定机制。</p>
+                <ul class="demo-features">
+                    <li>神经网络可视化</li>
+                    <li>频率共振校准</li>
+                    <li>秩序锁定监控</li>
+                    <li>安全机制保障</li>
+                </ul>
+                <a href="ai-evolution.html" class="demo-link">进入系统 →</a>
             </div>
-            <p style="color: #cccccc; margin-top: 20px;">
-                不同信息基因之间的频率共振现象，当相干性系数C_coh > 0.6时达到最优状态
-            </p>
-        </section>
 
-        <nav class="navigation">
-            <a href="ckb-pyramid.html" class="nav-button">共识知识库</a>
-            <a href="frequency-analysis.html" class="nav-button">频率分析</a>
-            <a href="ai-evolution.html" class="nav-button">AI自演化</a>
-            <a href="economic-system.html" class="nav-button">经济系统</a>
-            <a href="dao-governance.html" class="nav-button">DAO治理</a>
-            <a href="order-locking.html" class="nav-button">秩序锁定</a>
-        </nav>
+            <div class="demo-card">
+                <div class="demo-icon">💰</div>
+                <h3 class="demo-title">经济系统</h3>
+                <p class="demo-description">基于四元统一框架的信息基因经济模型，实现知识资产化和智能交易。</p>
+                <ul class="demo-features">
+                    <li>四元价值评估</li>
+                    <li>智能资产分类</li>
+                    <li>实时市场模拟</li>
+                    <li>风险收益分析</li>
+                </ul>
+                <a href="economic-system.html" class="demo-link">进入系统 →</a>
+            </div>
 
-        <footer class="footer">
-            <p class="footer-text">
-                © 2024 信息基因论 · 基于频率相干性的去中心化共识网络 | 
-                理论版本: IGT v5.4 | 
-                构建目标: 人类共识知识库与AI和谐共生
-            </p>
-        </footer>
+            <div class="demo-card">
+                <div class="demo-icon">🏛️</div>
+                <h3 class="demo-title">DAO治理</h3>
+                <p class="demo-description">基于频率共识的去中心化治理系统，实现社区自治和智能决策。</p>
+                <ul class="demo-features">
+                    <li>共识网络可视化</li>
+                    <li>频率投票机制</li>
+                    <li>提案管理系统</li>
+                    <li>治理效率分析</li>
+                </ul>
+                <a href="dao-governance.html" class="demo-link">进入系统 →</a>
+            </div>
+
+            <div class="demo-card">
+                <div class="demo-icon">🔒</div>
+                <h3 class="demo-title">秩序锁定</h3>
+                <p class="demo-description">四元统一框架下的秩序锁定机制，确保系统稳定性和安全性。</p>
+                <ul class="demo-features">
+                    <li>四元锁定矩阵</li>
+                    <li>实时监控调节</li>
+                    <li>参数优化算法</li>
+                    <li>紧急释放机制</li>
+                </ul>
+                <a href="order-locking.html" class="demo-link">进入系统 →</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p>信息基因论新信息元宇宙 - 理论创新与实践探索</p>
+        <p>基于自旋-频率-漩涡-相干四元统一框架的信息生态系统</p>
+        <div class="links">
+            <a href="#" onclick="showTheory()">理论文档</a>
+            <a href="#" onclick="showWhitepaper()">技术白皮书</a>
+            <a href="#" onclick="showContact()">联系我们</a>
+            <a href="#" onclick="showHelp()">使用帮助</a>
+        </div>
     </div>
 
     <script>
-        // 添加交互效果
-        document.addEventListener('DOMContentLoaded', function() {
-            // 为概念卡片添加点击效果
-            const cards = document.querySelectorAll('.concept-card');
-            cards.forEach(card => {
-                card.addEventListener('click', function() {
-                    this.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 200);
-                });
-            });
+        // 创建背景粒子效果
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
 
-            // 动态更新频率可视化
-            function updateFrequencyWaves() {
-                const waves = document.querySelectorAll('.wave-line');
-                waves.forEach((wave, index) => {
-                    const randomDelay = Math.random() * 2;
-                    wave.style.animationDelay = randomDelay + 's';
-                });
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
             }
+        }
 
-            // 每5秒更新一次频率波
-            setInterval(updateFrequencyWaves, 5000);
+        // 模拟实时数据更新
+        function updateSystemStatus() {
+            const statusElements = {
+                'total-users': { base: 1247, variance: 50 },
+                'knowledge-nodes': { base: 8932, variance: 200 },
+                'coherence-level': { base: 94.7, variance: 2, decimals: 1 },
+                'system-stability': { base: 91.2, variance: 3, decimals: 1 },
+                'rvs-coefficient': { base: 0.87, variance: 0.05, decimals: 2 },
+                'entropy-level': { base: 23.4, variance: 2, decimals: 1 }
+            };
+
+            Object.keys(statusElements).forEach(id => {
+                const element = document.getElementById(id);
+                const config = statusElements[id];
+                const variance = (Math.random() - 0.5) * config.variance;
+                const newValue = config.base + variance;
+                
+                if (config.decimals) {
+                    element.textContent = newValue.toFixed(config.decimals);
+                } else {
+                    element.textContent = Math.floor(newValue).toLocaleString();
+                }
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 创建粒子背景
+            createParticles();
             
-            console.log('信息基因论 · 新信息元宇宙demo已加载完成');
-            console.log('核心概念：信息基因(IG) -> RVS演化循环 -> 共识知识库(CKB) -> AI自演化');
-            console.log('频率相干性系数C_coh > 0.6时达到最优共识状态');
+            // 隐藏加载动画
+            setTimeout(() => {
+                document.getElementById('loading').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            // 启动实时数据更新
+            setInterval(updateSystemStatus, 3000);
+            updateSystemStatus(); // 立即执行一次
         });
+
+        // 导航功能
+        function showTheory() {
+            alert('信息基因论v10.0理论文档正在准备中...\n\n核心公式：C = (k × e(f) × 2π × λ × s × √I_STI)/(Γ_max × ħ) × η\n\n包含：自旋-频率-漩涡-相干四元统一框架');
+        }
+
+        function showWhitepaper() {
+            alert('技术白皮书摘要：\n\n• 基于信息基因论的去中心化信息生态系统\n• RVS相关系数量化知识价值\n• 四元统一框架实现系统稳定性\n• 频率共识机制驱动治理决策\n• AI自我进化与秩序锁定机制');
+        }
+
+        function showContact() {
+            alert('联系我们：\n\n📧 Email: info@igtheory.org\n🌐 官网: www.igtheory.org\n💬 社区: community.igtheory.org\n\n欢迎理论探讨和技术合作！');
+        }
+
+        function showHelp() {
+            alert('使用帮助：\n\n1. 点击Demo卡片进入对应的功能模块\n2. 每个模块都有详细的操作说明\n3. 实时监控面板显示系统运行状态\n4. 理论框架介绍帮助理解核心概念\n5. 如有问题请联系技术支持\n\n祝您探索愉快！');
+        }
+
+        // 添加页面交互效果
+        document.querySelectorAll('.demo-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 添加点击波纹效果
+        document.querySelectorAll('.demo-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 创建波纹效果
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(0, 212, 255, 0.6)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                ripple.style.left = '50%';
+                ripple.style.top = '50%';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.marginLeft = '-10px';
+                ripple.style.marginTop = '-10px';
+                
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                    window.location.href = this.href;
+                }, 600);
+            });
+        });
+
+        // 添加波纹动画样式
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>

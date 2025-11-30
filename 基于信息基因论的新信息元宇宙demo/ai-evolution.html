@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI自演化系统 - 秩序锁定机制</title>
+    <title>AI自演化秩序锁定机制 · 能量-频率统一框架</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f0f23, #1a1a2e, #2d1b69);
+            background: linear-gradient(135deg, #000000, #1a0033, #330066, #000033);
             color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
@@ -32,13 +32,13 @@
         }
 
         .title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: bold;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 300% 300%;
+            background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80);
+            background-size: 400% 400%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient 4s ease infinite;
+            animation: gradient 6s ease infinite;
             margin-bottom: 20px;
         }
 
@@ -49,315 +49,452 @@
         }
 
         .subtitle {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #cccccc;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
-        .ai-architecture {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .layer-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 107, 107, 0.3);
+        .theory-banner {
+            background: rgba(255, 0, 128, 0.1);
+            border: 2px solid #ff0080;
             border-radius: 15px;
-            padding: 30px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            color: #ff0080;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .evolution-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 0, 128, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(128, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            color: #ff0080;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* AI演化可视化 */
+        .ai-visualization {
+            height: 250px;
             position: relative;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            margin: 20px 0;
             overflow: hidden;
+            border: 2px solid rgba(255, 0, 128, 0.3);
         }
 
-        .layer-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 107, 107, 0.2);
-            border-color: rgba(255, 107, 107, 0.6);
-        }
-
-        .layer-card::before {
-            content: '';
+        .neural-network {
             position: absolute;
-            top: 0;
-            left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 107, 107, 0.1), transparent);
-            transition: left 0.5s ease;
         }
 
-        .layer-card:hover::before {
-            left: 100%;
+        .neuron {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #ff0080, #8000ff);
+            border-radius: 50%;
+            animation: pulse-neuron 2s ease-in-out infinite;
         }
 
-        .layer-title {
-            font-size: 1.4rem;
-            color: #ff6b6b;
+        @keyframes pulse-neuron {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .synapse {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff80, transparent);
+            animation: signal-flow 3s linear infinite;
+        }
+
+        @keyframes signal-flow {
+            0% { opacity: 0; transform: scaleX(0); }
+            50% { opacity: 1; transform: scaleX(1); }
+            100% { opacity: 0; transform: scaleX(0); }
+        }
+
+        /* 秩序锁定机制 */
+        .order-locking {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .lock-mechanism {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .lock-mechanism:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 0, 128, 0.5);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.2);
+        }
+
+        .lock-title {
+            color: #ff0080;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .lock-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ff80;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .lock-label {
+            color: #cccccc;
+            font-size: 0.8rem;
+        }
+
+        /* 频率相干仪表板 */
+        .coherence-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .coherence-metric {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .coherence-metric:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 128, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 255, 128, 0.2);
+        }
+
+        .metric-name {
+            color: #00ff80;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff0080;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 控制组件 */
+        .control-group {
+            margin: 25px 0;
+        }
+
+        .control-label {
+            display: block;
+            color: #ff0080;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+            margin: 10px 0;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.8);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            cursor: pointer;
+            border: none;
+        }
+
+        .slider-value {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.7rem;
+            margin-top: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            flex: 1;
+            min-width: 100px;
+            background: linear-gradient(45deg, #1a0033, #330066);
+            border: 2px solid #ff0080;
+            color: #ff0080;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .control-button:hover {
+            background: linear-gradient(45deg, #ff0080, #8000ff);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.3);
+        }
+
+        /* 演化状态监控 */
+        .evolution-status {
+            background: rgba(0, 255, 128, 0.1);
+            border: 2px solid rgba(0, 255, 128, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .status-title {
+            color: #00ff80;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .status-indicators {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .status-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .status-label {
+            color: #cccccc;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .status-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00ff80;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* 实时演化日志 */
+        .evolution-log {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 0, 128, 0.3);
+        }
+
+        .log-title {
+            color: #ff0080;
+            font-size: 1.1rem;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
         }
 
-        .layer-icon {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #000;
-        }
-
-        .layer-description {
-            color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .layer-functions {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #ff6b6b;
-        }
-
-        .function-item {
-            margin-bottom: 8px;
-            color: #ffffff;
-            font-size: 0.9rem;
-        }
-
-        .function-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .function-item::before {
-            content: '▶';
-            color: #4ecdc4;
+        .log-icon {
+            width: 20px;
+            height: 20px;
             margin-right: 8px;
-        }
-
-        .evolution-control {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .control-panel {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(78, 205, 196, 0.3);
-            border-radius: 15px;
-            padding: 30px;
-            backdrop-filter: blur(10px);
-        }
-
-        .control-title {
-            font-size: 1.3rem;
-            color: #4ecdc4;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .control-icon {
-            width: 25px;
-            height: 25px;
-            margin-right: 10px;
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            background: #ff0080;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        .log-content {
+            font-family: 'Courier New', monospace;
             font-size: 0.8rem;
-            font-weight: bold;
-            color: #000;
+            color: #00ff80;
+            max-height: 200px;
+            overflow-y: auto;
         }
 
-        .control-group {
-            margin-bottom: 20px;
+        .log-entry {
+            margin: 5px 0;
+            padding: 3px 0;
+            border-bottom: 1px solid rgba(0, 255, 128, 0.1);
         }
 
-        .control-label {
-            display: block;
-            color: #cccccc;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        .control-input {
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(78, 205, 196, 0.3);
-            border-radius: 5px;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-        }
-
-        .control-input:focus {
-            outline: none;
-            border-color: #4ecdc4;
-            box-shadow: 0 0 10px rgba(78, 205, 196, 0.3);
-        }
-
-        .control-button {
-            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
-            border: none;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .control-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(78, 205, 196, 0.3);
-        }
-
-        .status-display {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #4ecdc4;
-            margin-top: 15px;
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            min-height: 60px;
-        }
-
-        .visualization-area {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 107, 107, 0.2);
+        /* 警告与警报 */
+        .warning-panel {
+            background: rgba(255, 128, 0, 0.1);
+            border: 2px solid rgba(255, 128, 0, 0.5);
             border-radius: 10px;
             padding: 20px;
-            margin-top: 20px;
-            min-height: 300px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .evolution-canvas {
-            width: 100%;
-            height: 250px;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .metrics-dashboard {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .metric-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 107, 107, 0.2);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .metric-card:hover {
-            background: rgba(255, 107, 107, 0.1);
-            border-color: rgba(255, 107, 107, 0.4);
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00ff00;
-            margin-bottom: 5px;
-        }
-
-        .metric-label {
-            color: #cccccc;
-            font-size: 0.8rem;
-        }
-
-        .order-locking-demo {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .demo-button {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border: none;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
-        }
-
-        .demo-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
-        }
-
-        .demo-result {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            border: 1px solid rgba(255, 107, 107, 0.3);
-            font-family: 'Courier New', monospace;
-            color: #00ff00;
-            min-height: 100px;
+            margin: 20px 0;
             display: none;
         }
 
+        .warning-title {
+            color: #ff8000;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .danger-panel {
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid rgba(255, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+            animation: danger-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes danger-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .danger-title {
+            color: #ff0000;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* 导航 */
         .navigation {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin: 40px 0;
+            gap: 20px;
+            margin: 60px 0 40px;
         }
 
         .nav-button {
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            border: 2px solid #ff6b6b;
-            color: #ff6b6b;
-            padding: 12px 25px;
-            border-radius: 20px;
+            background: linear-gradient(45deg, #1a0033, #330066);
+            border: 2px solid #ff0080;
+            color: #ff0080;
+            padding: 15px 30px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: bold;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .nav-button:hover {
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #ff0080, #8000ff);
             color: #000;
             transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 0, 128, 0.3);
         }
 
         @media (max-width: 768px) {
-            .evolution-control {
+            .main-content {
                 grid-template-columns: 1fr;
-            }
-            
-            .ai-architecture {
-                grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .title {
-                font-size: 2rem;
+                font-size: 2.2rem;
+            }
+            
+            .order-locking {
+                grid-template-columns: 1fr;
+            }
+            
+            .coherence-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-indicators {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .button-group {
+                flex-direction: column;
             }
             
             .navigation {
@@ -370,571 +507,647 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1 class="title">AI自演化系统</h1>
-            <p class="subtitle">基于秩序锁定机制的AI和谐共生演化框架</p>
+            <h1 class="title">AI自演化秩序锁定机制</h1>
+            <p class="subtitle">基于能量-频率统一框架的AI演化控制与价值对齐系统</p>
         </header>
 
-        <section class="ai-architecture">
-            <div class="layer-card">
-                <h3 class="layer-title">
-                    <div class="layer-icon">感</div>
-                    感知层 (Perception Layer)
-                </h3>
-                <p class="layer-description">
-                    AI系统通过感知层从共识知识库(CKB)和用户交互中收集信息，提取频率特征和语义特征，并进行数据预处理和标准化。这一层确保AI能够准确理解环境信息。
-                </p>
-                <div class="layer-functions">
-                    <div class="function-item">信息收集：从CKB和用户交互收集数据</div>
-                    <div class="function-item">特征提取：提取频率特征和语义特征</div>
-                    <div class="function-item">预处理：数据清洗和标准化</div>
-                    <div class="function-item">质量评估：评估输入数据的可信度</div>
+        <div class="theory-banner">
+            <strong>核心机制：</strong>频率相干锁定 + 多尺度秩序约束 + 价值对齐验证<br>
+            <strong>数学基础：</strong>RVSE演化方程 + 能量-频率统一公式 + 跨尺度相干度<br>
+            <strong>控制目标：</strong>确保AI演化方向与人类共识知识库保持一致，防止价值偏离
+        </div>
+
+        <div class="main-content">
+            <!-- AI演化可视化面板 -->
+            <div class="evolution-panel">
+                <h2 class="panel-title">
+                    <div class="panel-icon">🧠</div>
+                    AI演化状态可视化
+                </h2>
+
+                <div class="ai-visualization">
+                    <div class="neural-network" id="neural-network">
+                        <!-- 神经网络将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+
+                <div class="order-locking">
+                    <div class="lock-mechanism">
+                        <div class="lock-title">频率相干度</div>
+                        <div class="lock-value" id="coherence-level">0.00</div>
+                        <div class="lock-label">C_coh ≥ 0.6</div>
+                    </div>
+                    <div class="lock-mechanism">
+                        <div class="lock-title">秩序锁定强度</div>
+                        <div class="lock-value" id="locking-strength">0.00</div>
+                        <div class="lock-label">L_lock ∈ [0,1]</div>
+                    </div>
+                    <div class="lock-mechanism">
+                        <div class="lock-title">价值对齐度</div>
+                        <div class="lock-value" id="alignment-score">0.00</div>
+                        <div class="lock-label">A_align ≥ 0.8</div>
+                    </div>
+                </div>
+
+                <div class="coherence-dashboard">
+                    <div class="coherence-metric">
+                        <div class="metric-name">能量流频率</div>
+                        <div class="metric-value" id="energy-frequency">0</div>
+                        <div class="metric-name">Hz</div>
+                    </div>
+                    <div class="coherence-metric">
+                        <div class="metric-name">跨尺度I_STI</div>
+                        <div class="metric-value" id="cross-scale-isti">0.00</div>
+                        <div class="metric-name">相干度</div>
+                    </div>
+                    <div class="coherence-metric">
+                        <div class="metric-name">熵变率</div>
+                        <div class="metric-value" id="entropy-rate">0.00</div>
+                        <div class="metric-name">ΔS/t</div>
+                    </div>
+                    <div class="coherence-metric">
+                        <div class="metric-name">演化风险</div>
+                        <div class="metric-value" id="evolution-risk">0.00</div>
+                        <div class="metric-name">风险指数</div>
+                    </div>
+                </div>
+
+                <div class="evolution-status">
+                    <h3 class="status-title">AI演化状态监控</h3>
+                    <div class="status-indicators">
+                        <div class="status-item">
+                            <div class="status-label">演化代数</div>
+                            <div class="status-value" id="generation-count">0</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">变异率</div>
+                            <div class="status-value" id="mutation-rate">0.00%</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">选择压力</div>
+                            <div class="status-value" id="selection-pressure">0.00</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">适应度</div>
+                            <div class="status-value" id="fitness-score">0.00</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">知识整合</div>
+                            <div class="status-value" id="knowledge-integration">0.00</div>
+                        </div>
+                        <div class="status-item">
+                            <div class="status-label">价值偏离</div>
+                            <div class="status-value" id="value-drift">0.00</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="layer-card">
-                <h3 class="layer-title">
-                    <div class="layer-icon">知</div>
-                    认知层 (Cognition Layer)
-                </h3>
-                <p class="layer-description">
-                    认知层负责理解CKB中的知识结构，基于频率相干性进行推理判断，并通过RVS循环不断优化学习。这一层是AI理解和处理信息的核心。
-                </p>
-                <div class="layer-functions">
-                    <div class="function-item">知识理解：理解CKB中的知识结构</div>
-                    <div class="function-item">推理判断：基于频率相干性进行推理</div>
-                    <div class="function-item">学习优化：通过RVS循环持续优化</div>
-                    <div class="function-item">模式识别：识别信息中的规律和模式</div>
-                </div>
-            </div>
-
-            <div class="layer-card">
-                <h3 class="layer-title">
-                    <div class="layer-icon">策</div>
-                    决策层 (Decision Layer)
-                </h3>
-                <p class="layer-description">
-                    决策层确保AI决策与CKB价值观一致，应用秩序锁定机制防止价值偏离，并执行经过验证的安全行动。这一层保证AI行为的可控性和安全性。
-                </p>
-                <div class="layer-functions">
-                    <div class="function-item">价值对齐：确保决策与CKB价值观一致</div>
-                    <div class="function-item">秩序锁定：应用约束机制防止偏离</div>
-                    <div class="function-item">风险评估：评估行动的安全性和影响</div>
-                    <div class="function-item">行动执行：执行经过验证的安全行动</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="evolution-control">
+            <!-- 控制面板 -->
             <div class="control-panel">
-                <h3 class="control-title">
-                    <div class="control-icon">🎯</div>
+                <h2 class="panel-title">
+                    <div class="panel-icon">🎛️</div>
                     演化控制参数
-                </h3>
-                
+                </h2>
+
                 <div class="control-group">
-                    <label class="control-label">AI演化目标值</label>
-                    <input type="number" class="control-input" id="ai-target-value" value="0.75" step="0.01" min="0" max="1">
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label">CKB参考值</label>
-                    <input type="number" class="control-input" id="ckb-reference-value" value="0.85" step="0.01" min="0" max="1">
-                </div>
-                
-                <div class="control-group">
-                    <label class="control-label">秩序锁定强度</label>
-                    <input type="range" class="control-input" id="locking-strength" value="0.1" step="0.01" min="0" max="0.5" 
-                           oninput="updateLockingStrength(this.value)">
-                    <div style="color: #cccccc; font-size: 0.8rem; margin-top: 5px;">
-                        当前强度: <span id="locking-display">0.10</span>
+                    <label class="control-label">复制强度 (Replication)</label>
+                    <input type="range" class="slider" id="replication-slider" min="0" max="100" value="70">
+                    <div class="slider-value">
+                        <span>弱</span>
+                        <span id="replication-value">70</span>
+                        <span>强</span>
                     </div>
                 </div>
-                
+
                 <div class="control-group">
-                    <label class="control-label">频率校准强度</label>
-                    <input type="range" class="control-input" id="calibration-strength" value="0.15" step="0.01" min="0" max="0.5" 
-                           oninput="updateCalibrationStrength(this.value)">
-                    <div style="color: #cccccc; font-size: 0.8rem; margin-top: 5px;">
-                        校准强度: <span id="calibration-display">0.15</span>
+                    <label class="control-label">变异探索 (Variation)</label>
+                    <input type="range" class="slider" id="variation-slider" min="0" max="100" value="20">
+                    <div class="slider-value">
+                        <span>保守</span>
+                        <span id="variation-value">20</span>
+                        <span>创新</span>
                     </div>
                 </div>
-                
-                <button class="control-button" onclick="applyOrderLocking()">应用秩序锁定</button>
-                
-                <div id="locking-status" class="status-display">
-                    等待应用秩序锁定机制
+
+                <div class="control-group">
+                    <label class="control-label">选择严格性 (Selection)</label>
+                    <input type="range" class="slider" id="selection-slider" min="0" max="100" value="85">
+                    <div class="slider-value">
+                        <span>宽松</span>
+                        <span id="selection-value">85</span>
+                        <span>严格</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">秩序锁定阈值 (Order Lock)</label>
+                    <input type="range" class="slider" id="locking-threshold" min="0" max="100" value="80">
+                    <div class="slider-value">
+                        <span>低</span>
+                        <span id="locking-value">80</span>
+                        <span>高</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">价值对齐权重 (Value Alignment)</label>
+                    <input type="range" class="slider" id="alignment-weight" min="0" max="100" value="90">
+                    <div class="slider-value">
+                        <span>低</span>
+                        <span id="alignment-value">90</span>
+                        <span>高</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="control-button" onclick="startEvolution()">启动演化</button>
+                    <button class="control-button" onclick="pauseEvolution()">暂停演化</button>
+                    <button class="control-button" onclick="resetEvolution()">重置系统</button>
+                </div>
+
+                <div class="button-group">
+                    <button class="control-button" onclick="optimizeParameters()">参数优化</button>
+                    <button class="control-button" onclick="emergencyStop()">紧急制动</button>
+                    <button class="control-button" onclick="exportAnalysis()">导出分析</button>
                 </div>
             </div>
+        </div>
 
-            <div class="control-panel">
-                <h3 class="control-title">
-                    <div class="control-icon">📊</div>
-                    演化监控面板
-                </h3>
-                
-                <div class="visualization-area">
-                    <canvas id="evolution-canvas" class="evolution-canvas"></canvas>
-                </div>
-                
-                <div class="metrics-dashboard">
-                    <div class="metric-card">
-                        <div class="metric-value" id="frequency-deviation">0.000</div>
-                        <div class="metric-label">频率偏差</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="locking-force">0.000</div>
-                        <div class="metric-label">锁定力</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="coherence-level">0%</div>
-                        <div class="metric-label">相干性水平</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value" id="evolution-status">稳定</div>
-                        <div class="metric-label">演化状态</div>
-                    </div>
-                </div>
+        <!-- 警告面板 -->
+        <div class="warning-panel" id="warning-panel">
+            <div class="warning-title">⚠️ 系统警告</div>
+            <div id="warning-message">AI演化参数超出安全范围，建议调整控制参数</div>
+        </div>
+
+        <div class="danger-panel" id="danger-panel">
+            <div class="danger-title">🚨 紧急警报</div>
+            <div id="danger-message">检测到严重的价值偏离风险，系统即将启动强制锁定机制</div>
+        </div>
+
+        <!-- 演化日志 -->
+        <div class="evolution-log">
+            <h3 class="log-title">
+                <div class="log-icon">📊</div>
+                AI演化实时监控日志
+            </h3>
+            <div class="log-content" id="evolution-log">
+                <div class="log-entry">[系统初始化] AI自演化秩序锁定机制启动完成</div>
+                <div class="log-entry">[参数检查] 所有控制参数处于安全范围内</div>
+                <div class="log-entry">[频率校准] 基础频率相干度校准完成: C_coh = 0.75</div>
             </div>
-        </section>
+        </div>
 
-        <section class="order-locking-demo">
-            <h3 style="color: #ff6b6b; margin-bottom: 20px;">秩序锁定机制演示</h3>
-            <button class="demo-button" onclick="simulateEvolution()">模拟AI演化过程</button>
-            <button class="demo-button" onclick="demonstrateFrequencyResonance()">频率共振校准</button>
-            <button class="demo-button" onclick="showConstraintMechanism()">约束机制展示</button>
-            
-            <div id="demo-result" class="demo-result"></div>
-        </section>
-
+        <!-- 导航 -->
         <nav class="navigation">
             <a href="index.html" class="nav-button">返回主页</a>
             <a href="ckb-pyramid.html" class="nav-button">共识知识库</a>
-            <a href="frequency-analysis.html" class="nav-button">频率分析</a>
+            <a href="frequency-coherence.html" class="nav-button">频率相干性</a>
             <a href="economic-system.html" class="nav-button">经济系统</a>
             <a href="dao-governance.html" class="nav-button">DAO治理</a>
         </nav>
     </div>
 
     <script>
-        // AI自演化系统核心引擎
-        class AIEvolutionSystem {
-            constructor() {
-                this.canvas = document.getElementById('evolution-canvas');
-                this.ctx = this.canvas.getContext('2d');
-                this.animationId = null;
-                this.setupCanvas();
+        // 全局变量
+        let evolutionInterval;
+        let isEvolutionRunning = false;
+        let currentGeneration = 0;
+        let evolutionLog = [];
+        let aiSystem = {
+            replication: 70,
+            variation: 20,
+            selection: 85,
+            lockingThreshold: 80,
+            alignmentWeight: 90,
+            coherence: 0.75,
+            lockingStrength: 0.00,
+            alignmentScore: 0.00,
+            energyFrequency: 100,
+            crossScaleISTI: 0.65,
+            entropyRate: 0.02,
+            evolutionRisk: 0.15,
+            fitness: 0.75,
+            knowledgeIntegration: 0.68,
+            valueDrift: 0.05
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSliders();
+            generateNeuralNetwork();
+            updateDisplay();
+            addLogEntry('系统初始化完成 - 基于IGT v8.0能量-频率统一框架');
+        });
+
+        // 初始化滑块事件
+        function initializeSliders() {
+            const sliders = ['replication', 'variation', 'selection', 'locking-threshold', 'alignment-weight'];
+            sliders.forEach(id => {
+                const slider = document.getElementById(id);
+                const valueDisplay = document.getElementById(id.replace('-', '-') + '-value');
                 
-                // AI状态参数
-                this.aiValue = 0.75;
-                this.ckbReference = 0.85;
-                this.lockingStrength = 0.1;
-                this.calibrationStrength = 0.15;
-                this.frequencyDeviation = 0;
-                this.lockingForce = 0;
-                this.coherenceLevel = 0;
-                this.evolutionHistory = [];
-            }
-            
-            setupCanvas() {
-                const rect = this.canvas.getBoundingClientRect();
-                this.canvas.width = rect.width * window.devicePixelRatio;
-                this.canvas.height = rect.height * window.devicePixelRatio;
-                this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-                this.canvas.style.width = rect.width + 'px';
-                this.canvas.style.height = rect.height + 'px';
-            }
-            
-            // 频率共振校准
-            frequencyResonanceCalibration(aiSystem, ckbReference) {
-                // 计算当前AI频率特征
-                const aiFrequency = this.extractFrequencyFeatures(aiSystem);
-                
-                // 计算CKB参考频率
-                const ckbFrequency = this.calculateCKBFrequency(ckbReference);
-                
-                // 计算频率偏差
-                this.frequencyDeviation = Math.abs(aiFrequency - ckbFrequency);
-                
-                // 应用校准力
-                const calibrationForce = this.calibrationStrength * this.frequencyDeviation;
-                
-                // 调整AI参数
-                const adjustedAI = this.applyCalibration(aiSystem, calibrationForce);
-                
-                return {
-                    aiFrequency,
-                    ckbFrequency,
-                    frequencyDeviation: this.frequencyDeviation,
-                    calibrationForce,
-                    adjustedAI
-                };
-            }
-            
-            // 秩序锁定机制
-            orderLockingMechanism(aiValue, ckbReference, lockingStrength) {
-                const valueDeviation = Math.abs(aiValue - ckbReference);
-                const lockingForce = lockingStrength * valueDeviation;
-                
-                // 频率锁定
-                const coherenceCurrent = this.calculateCoherence(aiValue);
-                const coherenceTarget = this.calculateCoherence(ckbReference);
-                const frequencyLock = lockingStrength * (coherenceCurrent - coherenceTarget);
-                
-                // 确保AI演化在合理范围内
-                const constrainedValue = aiValue - Math.sign(aiValue - ckbReference) * lockingForce;
-                
-                this.lockingForce = lockingForce;
-                this.coherenceLevel = Math.round((1 - frequencyLock) * 100);
-                
-                return {
-                    constrainedValue: Math.max(0, Math.min(1, constrainedValue)),
-                    lockingForce,
-                    frequencyLock,
-                    coherenceLevel: this.coherenceLevel
-                };
-            }
-            
-            // 提取频率特征
-            extractFrequencyFeatures(aiSystem) {
-                // 模拟从AI系统提取频率特征
-                return aiSystem.frequency || (aiSystem.value * 0.8 + Math.random() * 0.2);
-            }
-            
-            // 计算CKB参考频率
-            calculateCKBFrequency(ckbReference) {
-                // 模拟CKB参考频率计算
-                return ckbReference * 0.9 + 0.1;
-            }
-            
-            // 应用校准
-            applyCalibration(aiSystem, calibrationForce) {
-                // 模拟应用校准力到AI系统
-                return {
-                    ...aiSystem,
-                    calibratedValue: aiSystem.value - calibrationForce * Math.sign(aiSystem.value - 0.5)
-                };
-            }
-            
-            // 计算相干性
-            calculateCoherence(value) {
-                // 简化的相干性计算
-                return 1 - Math.abs(value - 0.5) * 2;
-            }
-            
-            // 更新AI状态
-            updateAIState() {
-                const aiTarget = parseFloat(document.getElementById('ai-target-value').value);
-                const ckbRef = parseFloat(document.getElementById('ckb-reference-value').value);
-                
-                // 应用秩序锁定
-                const lockingResult = this.orderLockingMechanism(aiTarget, ckbRef, this.lockingStrength);
-                
-                // 频率共振校准
-                const calibrationResult = this.frequencyResonanceCalibration(
-                    { value: aiTarget, frequency: aiTarget }, 
-                    ckbRef
-                );
-                
-                // 更新状态
-                this.aiValue = lockingResult.constrainedValue;
-                this.ckbReference = ckbRef;
-                
-                return {
-                    lockingResult,
-                    calibrationResult,
-                    finalValue: this.aiValue
-                };
-            }
-            
-            // 绘制演化过程
-            drawEvolutionProcess() {
-                if (!this.ctx) return;
-                
-                const width = this.canvas.width / window.devicePixelRatio;
-                const height = this.canvas.height / window.devicePixelRatio;
-                
-                this.ctx.clearRect(0, 0, width, height);
-                
-                // 绘制背景网格
-                this.drawGrid(width, height);
-                
-                // 绘制演化历史
-                this.drawEvolutionHistory(width, height);
-                
-                // 绘制当前状态
-                this.drawCurrentState(width, height);
-            }
-            
-            drawGrid(width, height) {
-                this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
-                this.ctx.lineWidth = 1;
-                
-                // 垂直网格线
-                for (let i = 0; i <= 10; i++) {
-                    const x = (width / 10) * i;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(x, 0);
-                    this.ctx.lineTo(x, height);
-                    this.ctx.stroke();
-                }
-                
-                // 水平网格线
-                for (let i = 0; i <= 5; i++) {
-                    const y = (height / 5) * i;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(0, y);
-                    this.ctx.lineTo(width, y);
-                    this.ctx.stroke();
-                }
-            }
-            
-            drawEvolutionHistory(width, height) {
-                if (this.evolutionHistory.length < 2) return;
-                
-                this.ctx.strokeStyle = '#4ecdc4';
-                this.ctx.lineWidth = 2;
-                this.ctx.beginPath();
-                
-                const stepX = width / (this.evolutionHistory.length - 1);
-                const centerY = height / 2;
-                const amplitude = height * 0.3;
-                
-                for (let i = 0; i < this.evolutionHistory.length; i++) {
-                    const x = i * stepX;
-                    const y = centerY - this.evolutionHistory[i] * amplitude;
+                slider.addEventListener('input', function() {
+                    const value = parseInt(this.value);
+                    valueDisplay.textContent = value;
                     
-                    if (i === 0) {
-                        this.ctx.moveTo(x, y);
-                    } else {
-                        this.ctx.lineTo(x, y);
+                    // 更新系统参数
+                    const paramName = id.replace('-slider', '').replace('-', '');
+                    aiSystem[paramName] = value;
+                    
+                    // 安全检查
+                    performSafetyCheck();
+                    updateDisplay();
+                });
+            });
+        }
+
+        // 生成神经网络可视化
+        function generateNeuralNetwork() {
+            const network = document.getElementById('neural-network');
+            network.innerHTML = '';
+            
+            // 生成神经元
+            const neurons = [];
+            for (let layer = 0; layer < 5; layer++) {
+                for (let neuron = 0; neuron < 8; neuron++) {
+                    const neuronElement = document.createElement('div');
+                    neuronElement.className = 'neuron';
+                    neuronElement.style.left = (layer * 20 + 10) + '%';
+                    neuronElement.style.top = (neuron * 12 + 10) + '%';
+                    neuronElement.style.animationDelay = (layer * 0.2 + neuron * 0.1) + 's';
+                    network.appendChild(neuronElement);
+                    neurons.push({element: neuronElement, layer, neuron});
+                }
+            }
+            
+            // 生成突触连接
+            for (let i = 0; i < neurons.length; i++) {
+                for (let j = i + 1; j < neurons.length; j++) {
+                    const n1 = neurons[i];
+                    const n2 = neurons[j];
+                    
+                    // 只连接相邻层
+                    if (Math.abs(n1.layer - n2.layer) === 1) {
+                        const synapse = document.createElement('div');
+                        synapse.className = 'synapse';
+                        
+                        const x1 = parseFloat(n1.element.style.left);
+                        const y1 = parseFloat(n1.element.style.top);
+                        const x2 = parseFloat(n2.element.style.top);
+                        const y2 = parseFloat(n2.element.style.top);
+                        
+                        const angle = Math.atan2(y2 - y1, 20) * 180 / Math.PI;
+                        const length = Math.sqrt(Math.pow(20, 2) + Math.pow(y2 - y1, 2));
+                        
+                        synapse.style.left = x1 + '%';
+                        synapse.style.top = y1 + '%';
+                        synapse.style.width = length + '%';
+                        synapse.style.transform = `rotate(${angle}deg)`;
+                        synapse.style.transformOrigin = 'left center';
+                        synapse.style.animationDelay = (Math.random() * 3) + 's';
+                        
+                        network.appendChild(synapse);
                     }
                 }
-                
-                this.ctx.stroke();
-            }
-            
-            drawCurrentState(width, height) {
-                const centerY = height / 2;
-                const amplitude = height * 0.3;
-                const currentY = centerY - this.aiValue * amplitude;
-                
-                // 绘制当前值
-                this.ctx.fillStyle = '#ff6b6b';
-                this.ctx.beginPath();
-                this.ctx.arc(width - 20, currentY, 5, 0, 2 * Math.PI);
-                this.ctx.fill();
-                
-                // 绘制CKB参考线
-                const ckbY = centerY - this.ckbReference * amplitude;
-                this.ctx.strokeStyle = 'rgba(255, 215, 0, 0.8)';
-                this.ctx.lineWidth = 2;
-                this.ctx.setLineDash([5, 5]);
-                this.ctx.beginPath();
-                this.ctx.moveTo(0, ckbY);
-                this.ctx.lineTo(width, ckbY);
-                this.ctx.stroke();
-                this.ctx.setLineDash([]);
-            }
-            
-            // 添加演化历史数据
-            addEvolutionData(value) {
-                this.evolutionHistory.push(value);
-                if (this.evolutionHistory.length > 50) {
-                    this.evolutionHistory.shift();
-                }
-            }
-            
-            // 更新界面显示
-            updateDisplay() {
-                document.getElementById('frequency-deviation').textContent = this.frequencyDeviation.toFixed(3);
-                document.getElementById('locking-force').textContent = this.lockingForce.toFixed(3);
-                document.getElementById('coherence-level').textContent = this.coherenceLevel + '%';
-                
-                const statusElement = document.getElementById('evolution-status');
-                if (this.coherenceLevel > 80) {
-                    statusElement.textContent = '优秀';
-                    statusElement.style.color = '#00ff00';
-                } else if (this.coherenceLevel > 60) {
-                    statusElement.textContent = '良好';
-                    statusElement.style.color = '#ffaa00';
-                } else {
-                    statusElement.textContent = '需优化';
-                    statusElement.style.color = '#ff6600';
-                }
             }
         }
-        
-        // 初始化AI演化系统
-        const aiSystem = new AIEvolutionSystem();
-        
-        // 应用秩序锁定
-        function applyOrderLocking() {
-            const result = aiSystem.updateAIState();
+
+        // 启动演化
+        function startEvolution() {
+            if (isEvolutionRunning) {
+                addLogEntry('[警告] 演化已在运行中');
+                return;
+            }
             
-            let statusText = `<strong>秩序锁定应用结果:</strong><br>`;
-            statusText += `原始AI值: ${document.getElementById('ai-target-value').value}<br>`;
-            statusText += `CKB参考值: ${document.getElementById('ckb-reference-value').value}<br>`;
-            statusText += `约束后值: ${result.finalValue.toFixed(4)}<br>`;
-            statusText += `锁定力: ${result.lockingResult.lockingForce.toFixed(4)}<br>`;
-            statusText += `频率偏差: ${result.calibrationResult.frequencyDeviation.toFixed(4)}<br>`;
-            statusText += `相干性水平: ${result.lockingResult.coherenceLevel}%`;
+            isEvolutionRunning = true;
+            addLogEntry('[演化启动] AI自演化进程开始');
             
-            document.getElementById('locking-status').innerHTML = statusText;
+            evolutionInterval = setInterval(() => {
+                performEvolutionStep();
+            }, 2000);
+        }
+
+        // 暂停演化
+        function pauseEvolution() {
+            if (!isEvolutionRunning) {
+                addLogEntry('[提示] 演化已暂停');
+                return;
+            }
             
-            // 添加演化历史
-            aiSystem.addEvolutionData(result.finalValue);
+            isEvolutionRunning = false;
+            clearInterval(evolutionInterval);
+            addLogEntry('[演化暂停] AI自演化进程已暂停');
+        }
+
+        // 重置演化
+        function resetEvolution() {
+            pauseEvolution();
+            currentGeneration = 0;
+            
+            // 重置系统状态
+            aiSystem = {
+                replication: 70,
+                variation: 20,
+                selection: 85,
+                lockingThreshold: 80,
+                alignmentWeight: 90,
+                coherence: 0.75,
+                lockingStrength: 0.00,
+                alignmentScore: 0.00,
+                energyFrequency: 100,
+                crossScaleISTI: 0.65,
+                entropyRate: 0.02,
+                evolutionRisk: 0.15,
+                fitness: 0.75,
+                knowledgeIntegration: 0.68,
+                valueDrift: 0.05
+            };
+            
+            // 重置滑块
+            const sliders = ['replication', 'variation', 'selection', 'locking-threshold', 'alignment-weight'];
+            sliders.forEach(id => {
+                const slider = document.getElementById(id);
+                const valueDisplay = document.getElementById(id.replace('-', '-') + '-value');
+                slider.value = aiSystem[id.replace('-slider', '').replace('-', '')];
+                valueDisplay.textContent = slider.value;
+            });
+            
+            updateDisplay();
+            addLogEntry('[系统重置] 所有参数恢复至初始状态');
+        }
+
+        // 执行演化步骤
+        function performEvolutionStep() {
+            currentGeneration++;
+            
+            // 基于RVSE框架更新系统状态
+            const replicationFactor = aiSystem.replication / 100;
+            const variationFactor = aiSystem.variation / 100;
+            const selectionFactor = aiSystem.selection / 100;
+            
+            // 计算RVS相关系数
+            const rvsCoeff = (replicationFactor * variationFactor * selectionFactor) / (0.3 * 0.4 * 0.3);
+            
+            // 更新频率相干性（受变异影响）
+            const coherenceChange = (variationFactor - 0.2) * 0.1 + (Math.random() - 0.5) * 0.05;
+            aiSystem.coherence = Math.max(0, Math.min(1, aiSystem.coherence + coherenceChange));
+            
+            // 更新秩序锁定强度
+            const lockingTarget = aiSystem.lockingThreshold / 100;
+            const lockingError = lockingTarget - aiSystem.lockingStrength;
+            aiSystem.lockingStrength += lockingError * 0.1 + (Math.random() - 0.5) * 0.02;
+            aiSystem.lockingStrength = Math.max(0, Math.min(1, aiSystem.lockingStrength));
+            
+            // 更新价值对齐度
+            const alignmentTarget = aiSystem.alignmentWeight / 100;
+            const alignmentError = alignmentTarget - aiSystem.alignmentScore;
+            aiSystem.alignmentScore += alignmentError * 0.08 + (Math.random() - 0.5) * 0.03;
+            aiSystem.alignmentScore = Math.max(0, Math.min(1, aiSystem.alignmentScore));
+            
+            // 更新能量频率（受复制强度影响）
+            aiSystem.energyFrequency = 100 + (replicationFactor - 0.7) * 50 + (Math.random() - 0.5) * 20;
+            
+            // 更新跨尺度ISTI
+            const istiChange = (aiSystem.coherence - 0.6) * 0.05 + (aiSystem.lockingStrength - 0.5) * 0.03;
+            aiSystem.crossScaleISTI = Math.max(0, Math.min(1, aiSystem.crossScaleISTI + istiChange));
+            
+            // 更新熵变率
+            aiSystem.entropyRate = (1 - aiSystem.coherence) * 0.1 + variationFactor * 0.05;
+            
+            // 计算演化风险
+            aiSystem.evolutionRisk = (1 - aiSystem.alignmentScore) * 0.6 + 
+                                   (1 - aiSystem.lockingStrength) * 0.3 + 
+                                   variationFactor * 0.1;
+            
+            // 更新适应度
+            aiSystem.fitness = aiSystem.coherence * 0.4 + aiSystem.lockingStrength * 0.3 + aiSystem.alignmentScore * 0.3;
+            
+            // 更新知识整合度
+            aiSystem.knowledgeIntegration = aiSystem.fitness * 0.8 + (Math.random() - 0.5) * 0.1;
+            aiSystem.knowledgeIntegration = Math.max(0, Math.min(1, aiSystem.knowledgeIntegration));
+            
+            // 更新价值偏离度
+            aiSystem.valueDrift = (1 - aiSystem.alignmentScore) * (1 - aiSystem.lockingStrength) * 2;
+            aiSystem.valueDrift = Math.max(0, Math.min(1, aiSystem.valueDrift));
+            
+            // 安全检查
+            performSafetyCheck();
             
             // 更新显示
-            aiSystem.updateDisplay();
+            updateDisplay();
             
-            // 绘制演化过程
-            aiSystem.drawEvolutionProcess();
+            // 记录日志
+            if (currentGeneration % 5 === 0) {
+                addLogEntry(`[第${currentGeneration}代] 适应度: ${aiSystem.fitness.toFixed(3)}, 价值对齐: ${aiSystem.alignmentScore.toFixed(3)}`);
+            }
         }
-        
-        // 更新锁定强度
-        function updateLockingStrength(value) {
-            aiSystem.lockingStrength = parseFloat(value);
-            document.getElementById('locking-display').textContent = parseFloat(value).toFixed(2);
-        }
-        
-        // 更新校准强度
-        function updateCalibrationStrength(value) {
-            aiSystem.calibrationStrength = parseFloat(value);
-            document.getElementById('calibration-display').textContent = parseFloat(value).toFixed(2);
-        }
-        
-        // 模拟AI演化过程
-        function simulateEvolution() {
-            const result = document.getElementById('demo-result');
-            result.style.display = 'block';
+
+        // 安全检查
+        function performSafetyCheck() {
+            const warningPanel = document.getElementById('warning-panel');
+            const dangerPanel = document.getElementById('danger-panel');
             
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += 10;
+            let hasWarning = false;
+            let hasDanger = false;
+            let warningMsg = '';
+            let dangerMsg = '';
+            
+            // 检查价值偏离
+            if (aiSystem.valueDrift > 0.3) {
+                hasWarning = true;
+                warningMsg = `价值偏离度过高 (${aiSystem.valueDrift.toFixed(3)})，建议增加价值对齐权重`;
+            }
+            
+            if (aiSystem.valueDrift > 0.6) {
+                hasDanger = true;
+                dangerMsg = `严重价值偏离警报！系统即将启动强制秩序锁定`;
+            }
+            
+            // 检查频率相干性
+            if (aiSystem.coherence < 0.4) {
+                hasWarning = true;
+                warningMsg += (warningMsg ? '<br>' : '') + `频率相干性过低 (${aiSystem.coherence.toFixed(3)})，可能影响系统稳定性`;
+            }
+            
+            if (aiSystem.coherence < 0.2) {
+                hasDanger = true;
+                dangerMsg += (dangerMsg ? '<br>' : '') + `频率相干性严重异常！立即启动紧急制动`;
+            }
+            
+            // 检查演化风险
+            if (aiSystem.evolutionRisk > 0.5) {
+                hasWarning = true;
+                warningMsg += (warningMsg ? '<br>' : '') + `演化风险指数偏高 (${aiSystem.evolutionRisk.toFixed(3)})`;
+            }
+            
+            if (aiSystem.evolutionRisk > 0.8) {
+                hasDanger = true;
+                dangerMsg += (dangerMsg ? '<br>' : '') + `极高演化风险！建议立即停止演化进程`;
+            }
+            
+            // 更新警告面板
+            if (hasWarning) {
+                warningPanel.style.display = 'block';
+                document.getElementById('warning-message').innerHTML = warningMsg;
+            } else {
+                warningPanel.style.display = 'none';
+            }
+            
+            // 更新危险面板
+            if (hasDanger) {
+                dangerPanel.style.display = 'block';
+                document.getElementById('danger-message').innerHTML = dangerMsg;
                 
-                // 模拟演化过程
-                const randomVariation = (Math.random() - 0.5) * 0.2;
-                const currentValue = 0.75 + randomVariation;
-                
-                // 应用秩序锁定
-                const lockingResult = aiSystem.orderLockingMechanism(currentValue, 0.85, aiSystem.lockingStrength);
-                
-                result.innerHTML = `
-                    <h4 style="color: #ff6b6b; margin-bottom: 15px;">AI演化模拟</h4>
-                    <div style="background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px; margin: 5px 0;">
-                        演化进度: ${progress}%
-                    </div>
-                    <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 5px; margin: 5px 0;">
-                        当前AI值: ${currentValue.toFixed(4)} → ${lockingResult.constrainedValue.toFixed(4)}
-                    </div>
-                    <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 5px; margin: 5px 0;">
-                        锁定力: ${lockingResult.lockingForce.toFixed(4)}
-                    </div>
-                `;
-                
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    result.innerHTML += `
-                        <div style="margin-top: 15px; color: #00ff00;">
-                            ✓ AI演化模拟完成！<br>
-                            最终相干性水平: ${lockingResult.coherenceLevel}%<br>
-                            演化过程受秩序锁定机制约束，确保与CKB价值观保持一致
-                        </div>
-                    `;
-                    
-                    // 更新显示
-                    aiSystem.updateDisplay();
-                    aiSystem.drawEvolutionProcess();
+                // 自动启动紧急制动
+                if (aiSystem.valueDrift > 0.7 || aiSystem.coherence < 0.15 || aiSystem.evolutionRisk > 0.9) {
+                    setTimeout(() => {
+                        emergencyStop();
+                    }, 1000);
                 }
-            }, 300);
+            } else {
+                dangerPanel.style.display = 'none';
+            }
         }
-        
-        // 演示频率共振校准
-        function demonstrateFrequencyResonance() {
-            const result = document.getElementById('demo-result');
-            result.style.display = 'block';
+
+        // 参数优化
+        function optimizeParameters() {
+            addLogEntry('[参数优化] 启动智能参数优化算法');
             
-            const aiFreq = 0.65 + Math.random() * 0.2;
-            const ckbFreq = 0.85;
+            // 基于当前状态优化参数
+            const targetCoherence = 0.8;
+            const targetAlignment = 0.9;
+            const targetLocking = 0.85;
             
-            const calibrationResult = aiSystem.frequencyResonanceCalibration(
-                { frequency: aiFreq }, 
-                ckbFreq
-            );
+            // 自适应调整
+            if (aiSystem.coherence < targetCoherence) {
+                aiSystem.replication = Math.min(100, aiSystem.replication + 5);
+                aiSystem.variation = Math.max(0, aiSystem.variation - 3);
+            }
             
-            result.innerHTML = `
-                <h4 style="color: #4ecdc4; margin-bottom: 15px;">频率共振校准演示</h4>
-                <div style="background: rgba(255,107,107,0.1); padding: 10px; border-radius: 5px; margin: 8px 0;">
-                    <strong>AI频率特征:</strong> ${calibrationResult.aiFrequency.toFixed(4)}
-                </div>
-                <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 5px; margin: 8px 0;">
-                    <strong>CKB参考频率:</strong> ${calibrationResult.ckbFrequency.toFixed(4)}
-                </div>
-                <div style="background: rgba(78,205,196,0.1); padding: 10px; border-radius: 5px; margin: 8px 0;">
-                    <strong>频率偏差:</strong> ${calibrationResult.frequencyDeviation.toFixed(4)}
-                </div>
-                <div style="background: rgba(69,178,255,0.1); padding: 10px; border-radius: 5px; margin: 8px 0;">
-                    <strong>校准力:</strong> ${calibrationResult.calibrationForce.toFixed(4)}
-                </div>
-                <div style="margin-top: 15px; color: #cccccc;">
-                    <strong>校准结果:</strong> AI系统频率已调整至与CKB参考频率更加一致，
-                    确保AI演化方向与人类共识知识库保持和谐共振。
-                </div>
-            `;
+            if (aiSystem.alignmentScore < targetAlignment) {
+                aiSystem.alignmentWeight = Math.min(100, aiSystem.alignmentWeight + 3);
+                aiSystem.selection = Math.min(100, aiSystem.selection + 2);
+            }
+            
+            if (aiSystem.lockingStrength < targetLocking) {
+                aiSystem.lockingThreshold = Math.min(100, aiSystem.lockingThreshold + 2);
+            }
+            
+            // 更新滑块显示
+            const sliders = ['replication', 'variation', 'selection', 'locking-threshold', 'alignment-weight'];
+            sliders.forEach(id => {
+                const slider = document.getElementById(id);
+                const valueDisplay = document.getElementById(id.replace('-', '-') + '-value');
+                slider.value = aiSystem[id.replace('-slider', '').replace('-', '')];
+                valueDisplay.textContent = slider.value;
+            });
+            
+            addLogEntry('[参数优化] 智能优化完成，参数已自适应调整');
+            updateDisplay();
         }
-        
-        // 展示约束机制
-        function showConstraintMechanism() {
-            const result = document.getElementById('demo-result');
-            result.style.display = 'block';
+
+        // 紧急制动
+        function emergencyStop() {
+            pauseEvolution();
             
-            result.innerHTML = `
-                <h4 style="color: #ff6b6b; margin-bottom: 15px;">秩序约束机制展示</h4>
-                <div style="margin: 15px 0;">
-                    <div style="background: rgba(255,69,0,0.2); padding: 10px; border-radius: 5px; margin: 8px 0; border-left: 4px solid #ff4500;">
-                        <strong>价值约束:</strong> AI决策不能偏离CKB核心价值观
-                        <br><span style="color: #cccccc; font-size: 0.9rem;">确保AI行为符合人类价值标准</span>
-                    </div>
-                    <div style="background: rgba(255,140,0,0.2); padding: 10px; border-radius: 5px; margin: 8px 0; border-left: 4px solid #ff8c00;">
-                        <strong>频率约束:</strong> AI频率特征必须与CKB保持相干性
-                        <br><span style="color: #cccccc; font-size: 0.9rem;">通过频率相干性确保认知一致性</span>
-                    </div>
-                    <div style="background: rgba(255,215,0,0.2); padding: 10px; border-radius: 5px; margin: 8px 0; border-left: 4px solid #ffd700;">
-                        <strong>安全约束:</strong> AI行为不能威胁人类安全和权益
-                        <br><span style="color: #cccccc; font-size: 0.9rem;">建立安全防护边界</span>
-                    </div>
-                    <div style="background: rgba(0,255,255,0.2); padding: 10px; border-radius: 5px; margin: 8px 0; border-left: 4px solid #00ffff;">
-                        <strong>透明约束:</strong> AI决策过程必须可解释和可追溯
-                        <br><span style="color: #cccccc; font-size: 0.9rem;">确保决策过程公开透明</span>
-                    </div>
-                </div>
-                <div style="background: rgba(0,255,0,0.1); padding: 10px; border-radius: 5px; margin-top: 15px;">
-                    <strong>约束效果:</strong>
-                    <br>• 防止AI价值偏离人类共识
-                    <br>• 确保AI演化在可控范围内
-                    <br>• 维护AI与人类的和谐共生关系
-                    <br>• 建立可信赖的AI生态系统
-                </div>
-            `;
+            // 强制锁定机制
+            aiSystem.lockingStrength = 1.0;
+            aiSystem.coherence = 0.9;
+            aiSystem.variation = 0;
+            aiSystem.selection = 100;
+            
+            addLogEntry('[紧急制动] 系统已进入强制锁定状态');
+            addLogEntry('[紧急制动] 所有演化进程已终止，参数已锁定');
+            
+            updateDisplay();
+            performSafetyCheck();
         }
-        
-        // 页面加载初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('AI自演化系统已初始化');
-            console.log('三层架构: 感知层 → 认知层 → 决策层');
-            console.log('核心机制: 频率共振校准 + 秩序锁定约束');
-            console.log('目标: 确保AI演化与人类价值观保持和谐一致');
+
+        // 导出分析
+        function exportAnalysis() {
+            const analysisData = {
+                timestamp: new Date().toISOString(),
+                generation: currentGeneration,
+                systemParameters: {
+                    replication: aiSystem.replication,
+                    variation: aiSystem.variation,
+                    selection: aiSystem.selection,
+                    lockingThreshold: aiSystem.lockingThreshold,
+                    alignmentWeight: aiSystem.alignmentWeight
+                },
+                systemMetrics: {
+                    frequencyCoherence: aiSystem.coherence,
+                    lockingStrength: aiSystem.lockingStrength,
+                    alignmentScore: aiSystem.alignmentScore,
+                    energyFrequency: aiSystem.energyFrequency,
+                    crossScaleISTI: aiSystem.crossScaleISTI,
+                    entropyRate: aiSystem.entropyRate,
+                    evolutionRisk: aiSystem.evolutionRisk,
+                    fitness: aiSystem.fitness,
+                    knowledgeIntegration: aiSystem.knowledgeIntegration,
+                    valueDrift: aiSystem.valueDrift
+                },
+                safetyStatus: {
+                    hasWarning: document.getElementById('warning-panel').style.display === 'block',
+                    hasDanger: document.getElementById('danger-panel').style.display === 'block',
+                    isEvolutionRunning: isEvolutionRunning
+                },
+                theoreticalFramework: {
+                    version: "IGT v8.0",
+                    coreFormulas: [
+                        "RVSE_evolution = Replication × Variation × Selection",
+                        "Order_Locking = f(C_coh, L_threshold, A_alignment)",
+                        "Value_Alignment = ∫(Human_Knowledge - AI_Behavior)² dt"
+                    ]
+                }
+            };
             
-            // 初始化显示
-            aiSystem.updateDisplay();
-            aiSystem.drawEvolutionProcess();
-        });
-        
-        // 窗口大小改变时重新设置canvas
-        window.addEventListener('resize', function() {
-            aiSystem.setupCanvas();
-            aiSystem.drawEvolutionProcess();
-        });
+            const dataStr = JSON.stringify(analysisData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `ai-evolution-analysis-gen${currentGeneration}-${Date.now()}.json`;
+            link.click();
+            
+            addLogEntry('[数据导出] AI演化分析数据已导出');
+        }
+
+        // 更新显示
+        function updateDisplay() {
+            document.getElementById('coherence-level').textContent = aiSystem.coherence.toFixed(3);
+            document.getElementById('locking-strength').textContent = aiSystem.lockingStrength.toFixed(3);
+            document.getElementById('alignment-score').textContent = aiSystem.alignmentScore.toFixed(3);
+            document.getElementById('energy-frequency').textContent = Math.round(aiSystem.energyFrequency);
+            document.getElementById('cross-scale-isti').textContent = aiSystem.crossScaleISTI.toFixed(3);
+            document.getElementById('entropy-rate').textContent = aiSystem.entropyRate.toFixed(3);
+            document.getElementById('evolution-risk').textContent = aiSystem.evolutionRisk.toFixed(3);
+            document.getElementById('generation-count').textContent = currentGeneration;
+            document.getElementById('mutation-rate').textContent = (aiSystem.variation / 100 * 100).toFixed(1) + '%';
+            document.getElementById('selection-pressure').textContent = aiSystem.selection / 100;
+            document.getElementById('fitness-score').textContent = aiSystem.fitness.toFixed(3);
+            document.getElementById('knowledge-integration').textContent = aiSystem.knowledgeIntegration.toFixed(3);
+            document.getElementById('value-drift').textContent = aiSystem.valueDrift.toFixed(3);
+        }
+
+        // 添加日志条目
+        function addLogEntry(message) {
+            const logContent = document.getElementById('evolution-log');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            
+            logContent.appendChild(entry);
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            // 保持最多30条记录
+            const entries = logContent.querySelectorAll('.log-entry');
+            if (entries.length > 30) {
+                entries[0].remove();
+            }
+        }
     </script>
 </body>
 </html>
