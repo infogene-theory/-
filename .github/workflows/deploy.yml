@@ -1,9 +1,9 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  # 当推送到main分支时触发部署
+  # 当推送到gh-pages分支时触发部署
   push:
-    branches: [ main ]
+    branches: [ gh-pages ]
   # 允许手动触发部署
   workflow_dispatch:
 
@@ -45,6 +45,6 @@ jobs:
           # Cloudflare账户ID
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # 生产环境分支
-          branch: main
+          branch: gh-pages
           # 启用预览部署
           enablePagesDev: true
