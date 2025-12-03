@@ -72,4 +72,12 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # 生产环境分支
           branch: main
-          # 简化配置，移除可能导致问题的选项
+          # 启用详细日志
+          verbose: true
+      
+      # 添加部署结果检查
+      - name: Check deployment status
+        if: ${{ always() }}
+        run: |
+          echo "Deployment workflow completed with status: ${{ job.status }}"
+          echo "If deployment failed, please check the logs above for detailed error information"
