@@ -32,6 +32,14 @@ jobs:
       - name: Build website
         run: npm run build
       
+      # 检查构建产物
+      - name: Check build output
+        run: |
+          echo "Checking build output directory..."
+          ls -la docs/.vitepress/dist
+          echo "Build output content:"
+          cat docs/.vitepress/dist/index.html | head -20
+      
       # 部署到Cloudflare Pages
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -45,6 +53,5 @@ jobs:
           # Cloudflare账户ID
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # 生产环境分支
-          branch: gh-pages
-          # 启用预览部署
-          enablePagesDev: true
+          branch: main
+          # 简化配置，移除可能导致问题的选项
