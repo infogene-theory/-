@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息元宇宙 - 内容创作</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>信息元宇宙</h1>
+        <p>内容创作与分发</p>
+    </div>
+    
+    <div class="nav">
+        <a href="index.html">首页</a>
+        <a href="user-dashboard.html">用户仪表盘</a>
+        <a href="architecture.html">平台架构</a>
+        <a href="roles.html">用户角色</a>
+        <a href="content.html" class="active">内容创作</a>
+        <a href="content-sharing.html">内容传播与分享</a>
+        <a href="data-privacy.html">数据共享与隐私</a>
+        <a href="economy.html">信息币经济</a>
+        <a href="governance.html">DAO治理</a>
+        <a href="ai-governance.html">AI治理</a>
+        <a href="applications.html">应用市场</a>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <h2>内容创作与分发</h2>
+            <p>信息元宇宙为创作者提供了一个去中心化的内容创作和分发平台，通过公平的价值分配机制，确保创作者获得与其贡献相匹配的回报。</p>
+            
+            <div class="content-creation-section">
+                <h3>内容创作</h3>
+                <div class="content-form">
+                    <div class="form-group">
+                        <label for="content-title">标题</label>
+                        <input type="text" id="content-title" class="form-control" placeholder="输入内容标题">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content-type">内容类型</label>
+                        <select id="content-type" class="form-control">
+                            <option value="article">文章</option>
+                            <option value="image">图片</option>
+                            <option value="video">视频</option>
+                            <option value="audio">音频</option>
+                            <option value="code">代码</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content-body">内容</label>
+                        <textarea id="content-body" class="form-control" rows="6" placeholder="输入内容正文"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content-tags">标签（用逗号分隔）</label>
+                        <input type="text" id="content-tags" class="form-control" placeholder="技术,区块链,去中心化,信息元宇宙">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>访问权限</label>
+                        <div class="radio-group">
+                            <label>
+                                <input type="radio" name="access" value="public" checked> 公开（免费）
+                            </label>
+                            <label>
+                                <input type="radio" name="access" value="paid"> 付费访问
+                            </label>
+                            <label>
+                                <input type="radio" name="access" value="subscription"> 订阅者专享
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="price-group" style="display: none;">
+                        <label for="content-price">价格（信息币）</label>
+                        <input type="number" id="content-price" class="form-control" min="0" step="0.1" value="1.0">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content-license">许可协议</label>
+                        <select id="content-license" class="form-control">
+                            <option value="cc-by">知识共享 署名 (CC BY)</option>
+                            <option value="cc-by-sa">知识共享 署名-相同方式共享 (CC BY-SA)</option>
+                            <option value="cc-by-nc">知识共享 署名-非商业性使用 (CC BY-NC)</option>
+                            <option value="cc-by-nc-sa">知识共享 署名-非商业性使用-相同方式共享 (CC BY-NC-SA)</option>
+                            <option value="all-rights">保留所有权利</option>
+                        </select>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button id="preview-btn" class="btn">预览</button>
+                        <button id="publish-btn" class="btn btn-secondary">发布</button>
+                    </div>
+                </div>
+                
+                <div class="content-preview" style="display: none;">
+                    <h4>内容预览</h4>
+                    <div class="preview-container">
+                        <h2 id="preview-title"></h2>
+                        <div id="preview-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>信息元宇宙演示 © 2025</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "-",
+  "version": "1.0.0",
+  "description": "> **\"宇宙没有永恒的结构，只有永恒的'破-立-衡'循环。演化的终局不是死寂，而是太极态的动态平衡。\"**",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infogene-theory/-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infogene-theory/-/issues"
+  },
+  "homepage": "https://github.com/infogene-theory/-#readme",
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.25"
+  }
+}

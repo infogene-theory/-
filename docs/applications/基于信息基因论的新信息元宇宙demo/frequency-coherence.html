@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>频率相干性分析 · RVS知识价值评估</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ff00);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 6s ease infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        .formula-banner {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #00ffff;
+            backdrop-filter: blur(10px);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .visualization-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            color: #00ffff;
+            margin-bottom: 25px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        /* 频率波形可视化 */
+        .frequency-waves {
+            height: 200px;
+            position: relative;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .wave-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wave-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #00ffff;
+            top: 50%;
+            transform-origin: center;
+        }
+
+        .wave-line:nth-child(1) { animation: wave1 3s ease-in-out infinite; }
+        .wave-line:nth-child(2) { animation: wave2 2.5s ease-in-out infinite; animation-delay: 0.5s; }
+        .wave-line:nth-child(3) { animation: wave3 4s ease-in-out infinite; animation-delay: 1s; }
+        .wave-line:nth-child(4) { animation: wave4 3.5s ease-in-out infinite; animation-delay: 1.5s; }
+
+        @keyframes wave1 {
+            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.8; }
+            50% { transform: translateY(-30px) scaleY(2); opacity: 1; }
+        }
+
+        @keyframes wave2 {
+            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.6; }
+            50% { transform: translateY(25px) scaleY(1.5); opacity: 0.9; }
+        }
+
+        @keyframes wave3 {
+            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.7; }
+            50% { transform: translateY(-20px) scaleY(1.8); opacity: 1; }
+        }
+
+        @keyframes wave4 {
+            0%, 100% { transform: translateY(0) scaleY(1); opacity: 0.5; }
+            50% { transform: translateY(15px) scaleY(1.3); opacity: 0.8; }
+        }
+
+        /* 相干性仪表板 */
+        .coherence-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .metric-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .metric-label {
+            color: #cccccc;
+            font-size: 0.9rem;
+        }
+
+        /* 控制组件 */
+        .control-group {
+            margin: 25px 0;
+        }
+
+        .control-label {
+            display: block;
+            color: #00ffff;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            cursor: pointer;
+            border: none;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            flex: 1;
+            min-width: 120px;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .control-button:hover {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        /* 知识价值评估 */
+        .value-assessment {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .assessment-title {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .rvs-formula {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            text-align: center;
+            margin: 15px 0;
+            border-left: 4px solid #00ff00;
+        }
+
+        .value-result {
+            background: rgba(0, 255, 0, 0.1);
+            border: 2px solid rgba(0, 255, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .value-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .value-level {
+            font-size: 1.1rem;
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
+            border-radius: 10px;
+            transition: width 1s ease;
+            width: 0%;
+        }
+
+        /* 实时数据面板 */
+        .realtime-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .realtime-title {
+            color: #ff00ff;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .data-stream {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #00ff00;
+            border-left: 4px solid #00ff00;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .data-entry {
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+
+        /* 导航 */
+        .navigation {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 60px 0 40px;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            border: 2px solid #00ffff;
+            color: #00ffff;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-button:hover {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .title {
+                font-size: 2.2rem;
+            }
+            
+            .formula-banner {
+                font-size: 0.9rem;
+                padding: 20px;
+            }
+            
+            .coherence-dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">频率相干性分析</h1>
+            <p class="subtitle">基于RVS相关系数的知识价值评估系统</p>
+        </header>
+
+        <div class="formula-banner">
+            <strong>知识价值公式：</strong>V_knowledge = RVS_correlation × C_coh × log₂(N_IG) × Stability_Factor<br>
+            <strong>RVS相关系数：</strong>RVS_corr = (Replication × Variation × Selection) / (α × β × γ)<br>
+            <strong>频率相干性：</strong>C_coh = |Σ(f_i × f_j)| / (N × Σ|f_i|²)
+        </div>
+
+        <div class="main-content">
+            <!-- 可视化面板 -->
+            <div class="visualization-panel">
+                <h2 class="panel-title">
+                    <div class="panel-icon">📊</div>
+                    频率相干性可视化
+                </h2>
+
+                <div class="frequency-waves">
+                    <div class="wave-container">
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                        <div class="wave-line"></div>
+                    </div>
+                </div>
+
+                <div class="coherence-dashboard">
+                    <div class="metric-card">
+                        <div class="metric-value" id="coherence-value">0.00</div>
+                        <div class="metric-label">频率相干性 C_coh</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="rvs-value">0.00</div>
+                        <div class="metric-label">RVS相关系数</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="frequency-value">0</div>
+                        <div class="metric-label">主导频率 (Hz)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value" id="stability-value">0.00</div>
+                        <div class="metric-label">稳定性因子</div>
+                    </div>
+                </div>
+
+                <div class="value-assessment">
+                    <h3 class="assessment-title">知识价值实时评估</h3>
+                    <div class="rvs-formula">
+                        V = <span id="rvs-coeff">0.000</span> × <span id="coh-coeff">0.000</span> × log₂(<span id="ig-count">0</span>) × <span id="stab-coeff">0.000</span>
+                    </div>
+                    <div class="value-result" id="value-result">
+                        <div class="value-score" id="value-score">0.00</div>
+                        <div class="value-level" id="value-level">知识价值等级</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="value-progress"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 控制面板 -->
+            <div class="control-panel">
+                <h2 class="panel-title">
+                    <div class="panel-icon">🎛️</div>
+                    参数控制面板
+                </h2>
+
+                <div class="control-group">
+                    <label class="control-label">复制强度 (Replication)</label>
+                    <input type="range" class="slider" id="replication-slider" min="0" max="100" value="50">
+                    <div style="display: flex; justify-content: space-between; color: #888; font-size: 0.8rem;">
+                        <span>弱</span>
+                        <span id="replication-value">50</span>
+                        <span>强</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">变异程度 (Variation)</label>
+                    <input type="range" class="slider" id="variation-slider" min="0" max="100" value="30">
+                    <div style="display: flex; justify-content: space-between; color: #888; font-size: 0.8rem;">
+                        <span>稳定</span>
+                        <span id="variation-value">30</span>
+                        <span>创新</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">选择压力 (Selection)</label>
+                    <input type="range" class="slider" id="selection-slider" min="0" max="100" value="70">
+                    <div style="display: flex; justify-content: space-between; color: #888; font-size: 0.8rem;">
+                        <span>宽松</span>
+                        <span id="selection-value">70</span>
+                        <span>严格</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label">信息基因数量</label>
+                    <input type="range" class="slider" id="ig-slider" min="10" max="1000" value="100">
+                    <div style="display: flex; justify-content: space-between; color: #888; font-size: 0.8rem;">
+                        <span>10</span>
+                        <span id="ig-value">100</span>
+                        <span>1000</span>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="control-button" onclick="startAnalysis()">开始分析</button>
+                    <button class="control-button" onclick="resetParameters()">重置参数</button>
+                    <button class="control-button" onclick="generateRandom()">随机生成</button>
+                </div>
+
+                <div class="button-group">
+                    <button class="control-button" onclick="optimizeValue()">价值优化</button>
+                    <button class="control-button" onclick="exportResults()">导出结果</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实时数据面板 -->
+        <div class="realtime-panel">
+            <h3 class="realtime-title">实时数据流监控</h3>
+            <div class="data-stream" id="data-stream">
+                <div class="data-entry">系统初始化完成...</div>
+            </div>
+        </div>
+
+        <!-- 导航 -->
+        <nav class="navigation">
+            <a href="index.html" class="nav-button">返回主页</a>
+            <a href="ckb-pyramid.html" class="nav-button">共识知识库</a>
+            <a href="ai-evolution.html" class="nav-button">AI自演化</a>
+            <a href="economic-system.html" class="nav-button">经济系统</a>
+            <a href="order-locking.html" class="nav-button">秩序锁定</a>
+        </nav>
+    </div>
+
+    <script>
+        // 全局变量
+        let analysisInterval;
+        let dataStream = [];
+        let currentParams = {
+            replication: 50,
+            variation: 30,
+            selection: 70,
+            igCount: 100
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeSliders();
+            startRealTimeMonitoring();
+            addDataEntry('频率相干性分析系统启动完成');
+            addDataEntry('RVS知识价值评估模块初始化成功');
+        });
+
+        // 初始化滑块事件
+        function initializeSliders() {
+            const sliders = ['replication', 'variation', 'selection', 'ig'];
+            sliders.forEach(type => {
+                const slider = document.getElementById(`${type}-slider`);
+                const valueDisplay = document.getElementById(`${type}-value`);
+                
+                slider.addEventListener('input', function() {
+                    valueDisplay.textContent = this.value;
+                    currentParams[type] = parseInt(this.value);
+                    updateAnalysis();
+                });
+            });
+        }
+
+        // 开始分析
+        function startAnalysis() {
+            addDataEntry('开始频率相干性分析...');
+            
+            if (analysisInterval) {
+                clearInterval(analysisInterval);
+            }
+
+            analysisInterval = setInterval(() => {
+                updateAnalysis();
+            }, 1000);
+
+            setTimeout(() => {
+                clearInterval(analysisInterval);
+                addDataEntry('分析完成 - 知识价值评估结束');
+            }, 10000);
+        }
+
+        // 更新分析结果
+        function updateAnalysis() {
+            // 计算RVS相关系数
+            const rvsCoeff = calculateRVSCoefficient();
+            
+            // 计算频率相干性
+            const coherence = calculateFrequencyCoherence();
+            
+            // 计算稳定性因子
+            const stability = calculateStabilityFactor();
+            
+            // 计算主导频率
+            const dominantFreq = calculateDominantFrequency();
+            
+            // 更新显示
+            document.getElementById('rvs-value').textContent = rvsCoeff.toFixed(3);
+            document.getElementById('coherence-value').textContent = coherence.toFixed(3);
+            document.getElementById('stability-value').textContent = stability.toFixed(3);
+            document.getElementById('frequency-value').textContent = dominantFreq;
+            
+            // 更新公式显示
+            document.getElementById('rvs-coeff').textContent = rvsCoeff.toFixed(3);
+            document.getElementById('coh-coeff').textContent = coherence.toFixed(3);
+            document.getElementById('ig-count').textContent = currentParams.igCount;
+            document.getElementById('stab-coeff').textContent = stability.toFixed(3);
+            
+            // 计算知识价值
+            const knowledgeValue = calculateKnowledgeValue(rvsCoeff, coherence, stability);
+            updateValueAssessment(knowledgeValue);
+            
+            // 更新波形动画
+            updateWaveAnimation(coherence, rvsCoeff);
+        }
+
+        // 计算RVS相关系数
+        function calculateRVSCoefficient() {
+            const replication = currentParams.replication / 100;
+            const variation = currentParams.variation / 100;
+            const selection = currentParams.selection / 100;
+            
+            // RVS相关系数公式
+            const alpha = 0.3; // 复制权重
+            const beta = 0.4;  // 变异权重
+            const gamma = 0.3; // 选择权重
+            
+            return (replication * variation * selection) / (alpha * beta * gamma);
+        }
+
+        // 计算频率相干性
+        function calculateFrequencyCoherence() {
+            const baseCoherence = 0.3;
+            const replicationBonus = (currentParams.replication / 100) * 0.4;
+            const variationPenalty = (currentParams.variation / 100) * 0.2;
+            const selectionBonus = (currentParams.selection / 100) * 0.3;
+            const igDensityBonus = Math.log(currentParams.igCount) / Math.log(1000) * 0.2;
+            
+            return Math.min(1.0, baseCoherence + replicationBonus - variationPenalty + selectionBonus + igDensityBonus);
+        }
+
+        // 计算稳定性因子
+        function calculateStabilityFactor() {
+            const replication = currentParams.replication / 100;
+            const variation = currentParams.variation / 100;
+            const selection = currentParams.selection / 100;
+            
+            // 稳定性与复制强度正相关，与变异程度负相关，与选择压力正相关
+            return (replication * 0.5 + selection * 0.3 + (1 - variation) * 0.2);
+        }
+
+        // 计算主导频率
+        function calculateDominantFrequency() {
+            const baseFreq = 100;
+            const variation = currentParams.variation / 100;
+            const selection = currentParams.selection / 100;
+            
+            // 主导频率受变异程度和选择压力影响
+            return Math.round(baseFreq + (variation * 50) + (selection * 30));
+        }
+
+        // 计算知识价值
+        function calculateKnowledgeValue(rvsCoeff, coherence, stability) {
+            const igCount = currentParams.igCount;
+            const value = rvsCoeff * coherence * Math.log2(igCount) * stability;
+            return Math.min(100, value * 25); // 标准化到0-100范围
+        }
+
+        // 更新价值评估
+        function updateValueAssessment(value) {
+            const valueScore = document.getElementById('value-score');
+            const valueLevel = document.getElementById('value-level');
+            const valueResult = document.getElementById('value-result');
+            const valueProgress = document.getElementById('value-progress');
+            
+            valueScore.textContent = value.toFixed(2);
+            valueProgress.style.width = Math.min(100, value) + '%';
+            
+            let level = '';
+            let color = '';
+            
+            if (value >= 80) {
+                level = '卓越知识 - 高价值共识';
+                color = '#00ff00';
+            } else if (value >= 60) {
+                level = '优质知识 - 稳定共识';
+                color = '#ffff00';
+            } else if (value >= 40) {
+                level = '一般知识 - 需要优化';
+                color = '#ff9900';
+            } else {
+                level = '低价值知识 - 需重新评估';
+                color = '#ff0000';
+            }
+            
+            valueLevel.textContent = level;
+            valueLevel.style.color = color;
+            valueResult.style.display = 'block';
+        }
+
+        // 更新波形动画
+        function updateWaveAnimation(coherence, rvsCoeff) {
+            const waves = document.querySelectorAll('.wave-line');
+            const intensity = coherence * rvsCoeff;
+            
+            waves.forEach((wave, index) => {
+                const delay = index * 0.5;
+                const duration = 2 + (1 - intensity) * 2; // 相干性越高，波形越稳定
+                wave.style.animationDuration = duration + 's';
+                wave.style.animationDelay = delay + 's';
+                wave.style.opacity = 0.3 + intensity * 0.7;
+            });
+        }
+
+        // 重置参数
+        function resetParameters() {
+            currentParams = { replication: 50, variation: 30, selection: 70, igCount: 100 };
+            
+            const sliders = ['replication', 'variation', 'selection', 'ig'];
+            sliders.forEach(type => {
+                const slider = document.getElementById(`${type}-slider`);
+                const valueDisplay = document.getElementById(`${type}-value`);
+                slider.value = currentParams[type];
+                valueDisplay.textContent = currentParams[type];
+            });
+            
+            updateAnalysis();
+            addDataEntry('参数已重置到默认值');
+        }
+
+        // 随机生成
+        function generateRandom() {
+            currentParams.replication = Math.floor(Math.random() * 100);
+            currentParams.variation = Math.floor(Math.random() * 100);
+            currentParams.selection = Math.floor(Math.random() * 100);
+            currentParams.igCount = Math.floor(Math.random() * 990) + 10;
+            
+            const sliders = ['replication', 'variation', 'selection', 'ig'];
+            sliders.forEach(type => {
+                const slider = document.getElementById(`${type}-slider`);
+                const valueDisplay = document.getElementById(`${type}-value`);
+                slider.value = currentParams[type];
+                valueDisplay.textContent = currentParams[type];
+            });
+            
+            updateAnalysis();
+            addDataEntry('随机参数生成完成');
+        }
+
+        // 价值优化
+        function optimizeValue() {
+            addDataEntry('开始知识价值优化算法...');
+            
+            // 简单的梯度上升优化
+            let bestValue = 0;
+            let bestParams = { ...currentParams };
+            
+            for (let i = 0; i < 50; i++) {
+                const testParams = {
+                    replication: Math.max(0, Math.min(100, currentParams.replication + (Math.random() - 0.5) * 20)),
+                    variation: Math.max(0, Math.min(100, currentParams.variation + (Math.random() - 0.5) * 20)),
+                    selection: Math.max(0, Math.min(100, currentParams.selection + (Math.random() - 0.5) * 20)),
+                    igCount: Math.max(10, Math.min(1000, currentParams.igCount + Math.floor((Math.random() - 0.5) * 100)))
+                };
+                
+                const tempParams = currentParams;
+                currentParams = testParams;
+                updateAnalysis();
+                
+                const currentValue = parseFloat(document.getElementById('value-score').textContent);
+                if (currentValue > bestValue) {
+                    bestValue = currentValue;
+                    bestParams = { ...testParams };
+                }
+                
+                currentParams = tempParams;
+            }
+            
+            // 应用最优参数
+            currentParams = bestParams;
+            const sliders = ['replication', 'variation', 'selection', 'ig'];
+            sliders.forEach(type => {
+                const slider = document.getElementById(`${type}-slider`);
+                const valueDisplay = document.getElementById(`${type}-value`);
+                slider.value = currentParams[type];
+                valueDisplay.textContent = currentParams[type];
+            });
+            
+            updateAnalysis();
+            addDataEntry(`价值优化完成 - 最优价值: ${bestValue.toFixed(2)}`);
+        }
+
+        // 导出结果
+        function exportResults() {
+            const results = {
+                timestamp: new Date().toISOString(),
+                parameters: currentParams,
+                metrics: {
+                    rvsCoefficient: parseFloat(document.getElementById('rvs-value').textContent),
+                    frequencyCoherence: parseFloat(document.getElementById('coherence-value').textContent),
+                    stabilityFactor: parseFloat(document.getElementById('stability-value').textContent),
+                    dominantFrequency: parseInt(document.getElementById('frequency-value').textContent),
+                    knowledgeValue: parseFloat(document.getElementById('value-score').textContent)
+                },
+                formulas: {
+                    rvsFormula: 'RVS_corr = (Replication × Variation × Selection) / (α × β × γ)',
+                    coherenceFormula: 'C_coh = |Σ(f_i × f_j)| / (N × Σ|f_i|²)',
+                    valueFormula: 'V_knowledge = RVS_correlation × C_coh × log₂(N_IG) × Stability_Factor'
+                }
+            };
+            
+            const dataStr = JSON.stringify(results, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `frequency-coherence-analysis-${Date.now()}.json`;
+            link.click();
+            
+            addDataEntry('分析结果已导出');
+        }
+
+        // 实时数据流监控
+        function startRealTimeMonitoring() {
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30%概率生成新数据
+                    const metrics = ['频率共振', '相位同步', '振幅稳定', '波形优化'];
+                    const metric = metrics[Math.floor(Math.random() * metrics.length)];
+                    const value = (Math.random() * 100).toFixed(2);
+                    addDataEntry(`${metric}: ${value}% - ${new Date().toLocaleTimeString()}`);
+                }
+            }, 2000);
+        }
+
+        // 添加数据条目
+        function addDataEntry(text) {
+            const dataStream = document.getElementById('data-stream');
+            const entry = document.createElement('div');
+            entry.className = 'data-entry';
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+            
+            dataStream.appendChild(entry);
+            dataStream.scrollTop = dataStream.scrollHeight;
+            
+            // 保持最多20条记录
+            const entries = dataStream.querySelectorAll('.data-entry');
+            if (entries.length > 20) {
+                entries[0].remove();
+            }
+        }
+    </script>
+</body>
+</html>
