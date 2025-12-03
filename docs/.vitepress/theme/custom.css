@@ -1,0 +1,247 @@
+/* 全局样式优化 */
+:root {
+  /* 主题颜色 */
+  --vp-c-brand: #42b883;
+  --vp-c-brand-light: #42d392;
+  --vp-c-brand-lighter: #35eb9a;
+  --vp-c-brand-dark: #33a06f;
+  --vp-c-brand-darker: #1d8850;
+  --vp-c-brand-dimm: rgba(66, 184, 131, 0.08);
+  
+  /* 背景颜色 */
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f9f9f9;
+  
+  /* 文本颜色 */
+  --vp-c-text-1: #2c3e50;
+  --vp-c-text-2: #4a637b;
+  --vp-c-text-3: #8a9ba8;
+  
+  /* 边框颜色 */
+  --vp-c-border: #eaecef;
+  --vp-c-divider: #f0f0f0;
+}
+
+/* 深色模式 */
+.dark {
+  --vp-c-bg: #1e1e1e;
+  --vp-c-bg-alt: #252525;
+  --vp-c-text-1: #ffffff;
+  --vp-c-text-2: #c9d1d9;
+  --vp-c-text-3: #8b949e;
+  --vp-c-border: #30363d;
+  --vp-c-divider: #2d2d2d;
+}
+
+/* 标题样式 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--vp-c-border);
+  padding-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+/* 段落样式 */
+p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* 链接样式 */
+a {
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* 卡片样式 */
+.VPFeatureCard {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.VPFeatureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* 代码块样式 */
+.VPContent code {
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.9em;
+}
+
+/* 表格样式 */
+.VPContent table {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 首页样式优化 */
+.VPHomeHero {
+  padding: 4rem 0;
+}
+
+.VPHomeFeatures {
+  margin-top: 3rem;
+}
+
+.VPHomeSection {
+  padding: 4rem 0;
+}
+
+/* 导航栏样式 */
+.VPNavBar {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.dark .VPNavBar {
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+/* 侧边栏样式 */
+.VPSidebar {
+  border-right: 1px solid var(--vp-c-border);
+}
+
+/* 页脚样式 */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-border);
+  padding: 2rem 0;
+}
+
+/* 按钮样式 */
+.VPButton {
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.VPButton:hover {
+  transform: translateY(-1px);
+}
+
+/* 响应式设计优化 */
+@media (max-width: 768px) {
+  .VPHomeHero {
+    padding: 2rem 0;
+  }
+  
+  .VPHomeSection {
+    padding: 2rem 0;
+  }
+}
+
+/* 自定义组件样式 */
+.info-box {
+  background-color: var(--vp-c-brand-dimm);
+  border: 1px solid var(--vp-c-brand-light);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.warning-box {
+  background-color: rgba(255, 221, 87, 0.1);
+  border: 1px solid #ffdd57;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.danger-box {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* 数学公式样式 */
+.katex {
+  font-size: 1.1em;
+}
+
+/* 图片样式 */
+img {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 引用样式 */
+blockquote {
+  border-left: 4px solid var(--vp-c-brand);
+  background-color: var(--vp-c-bg-alt);
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 列表样式 */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+/* 分隔线样式 */
+hr {
+  border: none;
+  border-top: 1px solid var(--vp-c-divider);
+  margin: 2rem 0;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vp-c-bg-alt);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-text-3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-2);
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.VPContent > * {
+  animation: fadeIn 0.5s ease-out;
+}
