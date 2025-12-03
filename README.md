@@ -141,23 +141,18 @@ igt-meta-gene/
 │   ├── .vitepress/               # VitePress配置
 │   │   ├── config.js            # 主配置
 │   │   ├── theme/               # 自定义主题
-│   │   └── components/          # 全局组件
-│   ├── theory/                  # 理论六卷
+│   │   ├── cache/               # 缓存文件
+│   │   └── dist/                # 构建输出
+│   ├── theory/                  # 理论六卷（部分内容已完成）
 │   ├── applications/            # 应用文档
 │   ├── case-studies/            # 案例库
 │   ├── community/               # 社区文档
-│   └── public/                  # 静态资源
-├── apps/                         # 交互应用（独立SPA）
-│   ├── yinyang-diagnosis/       # 阴阳相图诊断
-│   ├── rvse-simulator/          # RVSE循环模拟
-│   ├── temperature-dashboard/   # 温控仪表盘
-│   └── dialectic-decider/       # 辩证调控决策
-├── packages/                     # 共享包
-│   ├── igt-sdk/                 # Python SDK
-│   ├── igt-js/                  # JavaScript库
-│   └── shared-types/            # TypeScript类型定义
-├── scripts/                      # 构建脚本
-├── config/                       # 配置文件
+│   └── index.md                 # 首页
+├── theory/                       # 理论文档历史版本
+├── Case Studies.md               # 案例研究文档
+├── DEPLOYMENT.md                 # 部署说明
+├── package.json                  # 项目依赖
+├── package-lock.json             # 依赖锁文件
 └── README.md                     # 项目说明
 ```
 
@@ -165,35 +160,39 @@ igt-meta-gene/
 
 ## 📈 **实施路线图**
 
-### **第一阶段：理论展示平台（当前-1个月）**
+### **第一阶段：理论展示平台（已完成）**
 - [x] VitePress基础架构搭建
+- [x] IGT v20第一卷内容发布
+- [x] 基础搜索与导航功能（VitePress内置）
+- [x] 静态站点构建完成
+
+### **第二阶段：理论内容完善（进行中）**
 - [ ] IGT v20六卷完整内容发布
 - [ ] 理论图谱可视化导航
-- [ ] 基础搜索与导航功能
 - [ ] 部署到 imeta.space
 
-### **第二阶段：基础工具开发（1-3个月）**
+### **第三阶段：基础工具开发（规划中）**
 - [ ] 阴阳相图在线诊断工具
 - [ ] 个人温控自测问卷
 - [ ] RVSE循环交互演示
 - [ ] 用户系统基础功能
 - [ ] 首批案例研究发布
 
-### **第三阶段：完整工具生态（3-6个月）**
+### **第四阶段：完整工具生态（规划中）**
 - [ ] 组织温控诊断系统
 - [ ] 辩证调控策略生成器
 - [ ] 温控仪表盘（个人/组织）
 - [ ] 知识图谱导航系统
 - [ ] 社区论坛与协作功能
 
-### **第四阶段：智库服务上线（6-12个月）**
+### **第五阶段：智库服务上线（规划中）**
 - [ ] IGT认证课程体系
 - [ ] 企业咨询服务流程
 - [ ] 政策研究案例库
 - [ ] 开发者平台与API
 - [ ] 合作伙伴网络建立
 
-### **第五阶段：生态系统建设（1-2年）**
+### **第六阶段：生态系统建设（规划中）**
 - [ ] 多语言版本支持
 - [ ] 移动端应用开发
 - [ ] 学术研究数据库
@@ -244,7 +243,7 @@ npm run build
 npm run preview
 
 # 部署到Cloudflare Pages
-# （自动通过GitHub Actions）
+# （通过GitHub Actions自动部署）
 ```
 
 ---
