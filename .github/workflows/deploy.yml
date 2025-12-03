@@ -26,37 +26,19 @@ jobs:
       
       # 安装依赖
       - name: Install dependencies
-        run: |
-          echo "Installing dependencies..."
-          npm install --verbose
+        run: npm install
       
       # 构建网站
       - name: Build website
-        run: |
-          echo "Building website..."
-          npm run build --verbose
+        run: npm run build
       
       # 检查构建产物
       - name: Check build output
         run: |
-          echo "Checking if build output directory exists..."
-          if [ -d "docs/.vitepress/dist" ]; then
-            echo "Build output directory exists!"
-            echo "Contents of build output directory:"
-            ls -la docs/.vitepress/dist
-            echo "Checking if index.html exists..."
-            if [ -f "docs/.vitepress/dist/index.html" ]; then
-              echo "index.html exists!"
-              echo "First 20 lines of index.html:"
-              head -20 docs/.vitepress/dist/index.html
-            else
-              echo "ERROR: index.html not found in build output!"
-              exit 1
-            fi
-          else
-            echo "ERROR: Build output directory not found!"
-            exit 1
-          fi
+          echo "Checking build output directory..."
+          ls -la docs/.vitepress/dist
+          echo "Build output content:"
+          cat docs/.vitepress/dist/index.html | head -20
       
       # 部署到Cloudflare Pages
       - name: Deploy to Cloudflare Pages
@@ -72,12 +54,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # 生产环境分支
           branch: main
-          # 启用详细日志
-          verbose: true
-      
-      # 添加部署结果检查
-      - name: Check deployment status
-        if: ${{ always() }}
-        run: |
-          echo "Deployment workflow completed with status: ${{ job.status }}"
-          echo "If deployment failed, please check the logs above for detailed error information"
+          # 简化配置，移除可能导致问题的选项
