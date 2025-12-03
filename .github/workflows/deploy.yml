@@ -26,19 +26,37 @@ jobs:
       
       # 安装依赖
       - name: Install dependencies
-        run: npm install
+        run: |
+          echo "Installing dependencies..."
+          npm install --verbose
       
       # 构建网站
       - name: Build website
-        run: npm run build
+        run: |
+          echo "Building website..."
+          npm run build --verbose
       
       # 检查构建产物
       - name: Check build output
         run: |
-          echo "Checking build output directory..."
-          ls -la docs/.vitepress/dist
-          echo "Build output content:"
-          cat docs/.vitepress/dist/index.html | head -20
+          echo "Checking if build output directory exists..."
+          if [ -d "docs/.vitepress/dist" ]; then
+            echo "Build output directory exists!"
+            echo "Contents of build output directory:"
+            ls -la docs/.vitepress/dist
+            echo "Checking if index.html exists..."
+            if [ -f "docs/.vitepress/dist/index.html" ]; then
+              echo "index.html exists!"
+              echo "First 20 lines of index.html:"
+              head -20 docs/.vitepress/dist/index.html
+            else
+              echo "ERROR: index.html not found in build output!"
+              exit 1
+            fi
+          else
+            echo "ERROR: Build output directory not found!"
+            exit 1
+          fi
       
       # 部署到Cloudflare Pages
       - name: Deploy to Cloudflare Pages
